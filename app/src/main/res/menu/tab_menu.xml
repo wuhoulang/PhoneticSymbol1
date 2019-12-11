@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/one_rt" android:icon="@drawable/nav_home_normal" android:title="首页"></item>
+    <item android:id="@+id/two_rt" android:icon="@drawable/nav_order_normal" android:title="分类"></item>
+    <item android:id="@+id/three_rt" android:icon="@drawable/nav_me_normal" android:title="我的"></item>
+</menu>

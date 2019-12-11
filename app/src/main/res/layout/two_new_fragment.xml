@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fafafa">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="分类" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/main_srl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_one"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_broadcast"
+            android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/iv_broadcast"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/home_list_pic_broadcast" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/iv_broadcast"
+            android:textSize="8sp"
+            android:text="广播广播"
+            android:textColor="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vw_line_one"
+            android:layout_toRightOf="@+id/rl_broadcast"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="70dp"
+            android:background="@color/between_line"
+            android:layout_centerVertical="true">
+        </View>
+
+        <GridView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gv_broadcast"
+            android:layout_toRightOf="@+id/vw_line_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:verticalSpacing="10dp"
+            android:numColumns="3">
+        </GridView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_speak"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/iv_speak"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_list_pic_notebook" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv_speak"
+                android:text="口语口语"
+                android:textSize="8sp"
+                android:textColor="@color/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vw_line_two"
+            android:layout_toRightOf="@+id/rl_speak"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="70dp"
+            android:background="@color/between_line"
+            android:layout_centerVertical="true">
+        </View>
+
+        <GridView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gv_speak"
+            android:layout_toRightOf="@+id/vw_line_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:verticalSpacing="10dp"
+            android:numColumns="3">
+        </GridView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_video"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/iv_video"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_list_pic_movie_music" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv_video"
+                android:text="影视歌曲"
+                android:textSize="8sp"
+                android:textColor="@color/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vw_line_three"
+            android:layout_toRightOf="@+id/rl_video"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="70dp"
+            android:background="@color/between_line"
+            android:layout_centerVertical="true">
+        </View>
+
+        <GridView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gv_video"
+            android:layout_toRightOf="@+id/vw_line_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:verticalSpacing="10dp"
+            android:numColumns="3">
+        </GridView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_brand"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/iv_brand"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_list_pic_speak" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv_brand"
+                android:text="品牌听力"
+                android:textSize="8sp"
+                android:textColor="@color/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vw_line_four"
+            android:layout_toRightOf="@+id/rl_brand"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="70dp"
+            android:background="@color/between_line"
+            android:layout_centerVertical="true">
+        </View>
+
+        <GridView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gv_brand"
+            android:layout_toRightOf="@+id/vw_line_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:verticalSpacing="10dp"
+            android:numColumns="3">
+        </GridView>
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
