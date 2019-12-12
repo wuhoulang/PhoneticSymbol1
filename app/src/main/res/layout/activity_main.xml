@@ -25,15 +25,15 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/rg_main"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
         app:menu="@menu/tab_menu"
+        app:itemBackground="@null"
         app:itemIconTint="@drawable/seleced_menu_color"
         app:itemTextColor="@drawable/seleced_menu_color"
         >
     </android.support.design.widget.BottomNavigationView>
-
 
     </LinearLayout>
 </RelativeLayout>

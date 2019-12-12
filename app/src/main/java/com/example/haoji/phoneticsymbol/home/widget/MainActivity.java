@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.base.BaseFragment;
+import com.example.haoji.phoneticsymbol.home.widget.need.BottomNavigationViewHelper;
 import com.example.haoji.phoneticsymbol.main.widget.ThreeFragment;
+import com.example.haoji.phoneticsymbol.study.widget.StudyFragment;
 import com.example.haoji.phoneticsymbol.type.widget.TwoFragment;
 import com.example.haoji.phoneticsymbol.type.widget.TwoNewFragment;
 import com.example.haoji.phoneticsymbol.utils.PermissionsUtils;
@@ -53,11 +55,15 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         frameLayout = findViewById(R.id.frameLayout);
         rg_main = (BottomNavigationView) findViewById(R.id.rg_main);
+        //取消底部导航栏位移效果
+        BottomNavigationViewHelper.disableShiftMode(rg_main);
         fragments = new ArrayList<>();
         HomeFragment one = HomeFragment.newInstance(context);
+        StudyFragment stu =StudyFragment.newInstance(context);
         ThreeFragment three = ThreeFragment.newInstance(context);
         TwoNewFragment two = TwoNewFragment.newInstance(context);
         fragments.add(one);
+        fragments.add(stu);
         fragments.add(two);
         fragments.add(three);
         initOnListener();
@@ -73,14 +79,19 @@ public class MainActivity extends FragmentActivity {
                         position = 0;
                         base();
                         return true;
-                    case R.id.two_rt:
+                    case R.id.new_rt:
                         position = 1;
                         base();
                         return true;
-                    case R.id.three_rt:
+                    case R.id.two_rt:
                         position = 2;
                         base();
                         return true;
+                    case R.id.three_rt:
+                        position = 3;
+                        base();
+                        return true;
+
                 }
                 return false;
             }
@@ -147,10 +158,10 @@ public class MainActivity extends FragmentActivity {
                 if ((System.currentTimeMillis() - mExitTime) > 2000) {
                     Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
                     mExitTime = System.currentTimeMillis();
-                    Log.e("PY","2000");
+                    Log.e("PY", "2000");
                 } else {
                     finish();
-                    Log.e("PY","finish");
+                    Log.e("PY", "finish");
                 }
                 return true;
 
@@ -159,7 +170,6 @@ public class MainActivity extends FragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
 }

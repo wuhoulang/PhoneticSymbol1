@@ -48,5 +48,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation project(':ZBLibrary')
+    //banner
+    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
 
 }
