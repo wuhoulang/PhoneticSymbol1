@@ -25,7 +25,7 @@ public class TypeGridViewAdapterThree extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 9;
+        return 4;
     }
 
     @Override
@@ -50,8 +50,21 @@ public class TypeGridViewAdapterThree extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (position<9){
-            holder.tv_type_list.setText("VOA慢速");
+        switch (position) {
+            case 0:
+                holder.tv_type_list.setText("音乐综艺");
+                break;
+            case 1:
+                holder.tv_type_list.setText("美剧");
+                break;
+            case 2:
+                holder.tv_type_list.setText("英剧");
+                break;
+            case 3:
+                holder.tv_type_list.setText("电影");
+                break;
+            default:
+                break;
         }
 
         return convertView;

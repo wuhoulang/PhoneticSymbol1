@@ -50,8 +50,36 @@ public class TypeGridViewAdapterTwo extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (position<9){
-            holder.tv_type_list.setText("VOA慢速");
+        switch (position) {
+            case 0:
+                holder.tv_type_list.setText("TOP外教");
+                break;
+            case 1:
+                holder.tv_type_list.setText("英语音标");
+                break;
+            case 2:
+                holder.tv_type_list.setText("旅游口语");
+                break;
+            case 3:
+                holder.tv_type_list.setText("商业英语");
+                break;
+            case 4:
+                holder.tv_type_list.setText("求职英语");
+                break;
+            case 5:
+                holder.tv_type_list.setText("外贸英语");
+                break;
+            case 6:
+                holder.tv_type_list.setText("趣味口语");
+                break;
+            case 7:
+                holder.tv_type_list.setText("行业口语");
+                break;
+            case 8:
+                holder.tv_type_list.setText("日常口语");
+                break;
+            default:
+                break;
         }
 
         return convertView;

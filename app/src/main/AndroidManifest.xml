@@ -46,6 +46,10 @@
             android:launchMode="singleTask">
         </activity>
 
+        <activity android:name=".type.widget.ShowDetailActivity"
+            android:launchMode="singleTask">
+        </activity>
+
         <activity android:name=".type.widget.VideoViewActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden">

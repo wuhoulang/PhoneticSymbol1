@@ -13,11 +13,10 @@
         android:textSize="10sp" />
 
     <View
+        android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_width="1dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/tv_type_list"
         android:background="@color/between_line">
     </View>
 

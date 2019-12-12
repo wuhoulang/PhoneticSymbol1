@@ -50,8 +50,36 @@ public class TypeGridViewAdapterFour extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (position<9){
-            holder.tv_type_list.setText("VOA慢速");
+        switch (position) {
+            case 0:
+                holder.tv_type_list.setText("EnglishPod");
+                break;
+            case 1:
+                holder.tv_type_list.setText("背诵为王");
+                break;
+            case 2:
+                holder.tv_type_list.setText("听见英国");
+                break;
+            case 3:
+                holder.tv_type_list.setText("疯狂英语");
+                break;
+            case 4:
+                holder.tv_type_list.setText("网红外教");
+                break;
+            case 5:
+                holder.tv_type_list.setText("科普");
+                break;
+            case 6:
+                holder.tv_type_list.setText("走遍英国");
+                break;
+            case 7:
+                holder.tv_type_list.setText("Listen to");
+                break;
+            case 8:
+                holder.tv_type_list.setText("谢孟伟");
+                break;
+            default:
+                break;
         }
 
         return convertView;

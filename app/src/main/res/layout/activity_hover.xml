@@ -1,0 +1,142 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_hover_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back2_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="VOA慢速" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/between_line">
+    </View>
+
+    <com.example.haoji.phoneticsymbol.type.widget.MyScrollView
+        android:id="@+id/view_hover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_title_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/show_pratice"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/fire" />
+
+                <TextView
+                    android:id="@+id/tv_show_book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/show_pratice"
+                    android:text="DSQM193真题详解+标准模式（4级）"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/id_add_study"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_below="@+id/tv_show_book"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/show_pratice"
+                    android:background="@drawable/selector_study"
+                    android:text="订阅节目"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/id_now_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_below="@+id/tv_show_book"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/id_add_study"
+                    android:background="@drawable/selector_pay"
+                    android:text="购买书籍"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/head_bar_linear"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#ffffff"
+                android:tag="aaa">
+
+                <TextView
+                    android:id="@+id/click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="全部 共35个视频"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/click_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="选集 正序"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/between_line">
+                </View>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fafafa">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </com.example.haoji.phoneticsymbol.type.widget.MyScrollView>
+
+</LinearLayout>

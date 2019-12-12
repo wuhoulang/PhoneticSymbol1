@@ -28,7 +28,7 @@ public class TypeGridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 9;
+        return 7;
     }
 
     @Override
@@ -53,8 +53,30 @@ public class TypeGridViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (position<9){
-            holder.tv_type_list.setText("VOA慢速");
+        switch (position) {
+            case 0:
+                holder.tv_type_list.setText("VOA慢速");
+                break;
+            case 1:
+                holder.tv_type_list.setText("VOA常速");
+                break;
+            case 2:
+                holder.tv_type_list.setText("BBC");
+                break;
+            case 3:
+                holder.tv_type_list.setText("经济学人");
+                break;
+            case 4:
+                holder.tv_type_list.setText("科学美国人");
+                break;
+            case 5:
+                holder.tv_type_list.setText("NPR");
+                break;
+            case 6:
+                holder.tv_type_list.setText("CRI News");
+                break;
+            default:
+                break;
         }
 
         return convertView;

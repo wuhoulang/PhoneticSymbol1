@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.haoji.phoneticsymbol.R;
@@ -25,6 +27,9 @@ public class LearningMaterialaActivity extends Activity {
     @BindView(R.id.rv_learn)
     RecyclerView rv_learn;
 
+    @BindView(R.id.iv_learn_back)
+    ImageView iv_learn_back;
+
     private Context context =LearningMaterialaActivity.this;
     private SwipeRefreshLayout sf_learn;
 
@@ -41,8 +46,15 @@ public class LearningMaterialaActivity extends Activity {
 
          sf_learn =findViewById(R.id.sf_learn);
         sf_learn.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light, android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+                android.R.color.holo_blue_bright, android.R.color.holo_blue_bright,
+                android.R.color.holo_blue_bright);
+
+        iv_learn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         sf_learn.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

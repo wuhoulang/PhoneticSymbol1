@@ -1,6 +1,7 @@
 package com.example.haoji.phoneticsymbol.type.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.main.adapter.MeRecyclerViewAdapter;
 import com.example.haoji.phoneticsymbol.main.interf.OnItemClickListener;
+import com.example.haoji.phoneticsymbol.type.widget.ShowDetailActivity;
 
 
 /**
@@ -83,6 +85,8 @@ public class LearnMeRecyclerViewAdapter extends RecyclerView.Adapter<LearnMeRecy
          holder.rl_learn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                 Intent intent = new Intent(context, ShowDetailActivity.class);
+                 context.startActivity(intent);
              }
          });
     }
