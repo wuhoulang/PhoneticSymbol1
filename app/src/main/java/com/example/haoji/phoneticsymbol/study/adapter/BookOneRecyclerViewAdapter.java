@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.adapter;
+package com.example.haoji.phoneticsymbol.study.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.haoji.phoneticsymbol.R;
-import com.example.haoji.phoneticsymbol.type.widget.ReadBookActivity;
+import com.example.haoji.phoneticsymbol.study.widget.ReadBookActivity;
 
 
 /**

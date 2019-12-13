@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.haoji.phoneticsymbol.myContents.Contents;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.component.MusicServices;
@@ -76,8 +78,8 @@ public class ImageViewFragment extends Fragment implements View.OnClickListener 
                 Log.e("initMediaPlayer", "goodsBean--music:" + goodsBean.getMusic());
                 id_english.setText(goodsBean.getEnglishname());
                 id_chinese.setText(goodsBean.getChinesename());
-
-                Glide.with(context).load(Contents.BASE_URl_IMAGE + goodsBean.getPicture()).into(imagview);
+//                Glide.with(context).load().into(imagview);
+                Glide.with(context).load(Contents.BASE_URl_IMAGE + goodsBean.getPicture()).apply(new RequestOptions().placeholder(R.drawable.zhan).diskCacheStrategy(DiskCacheStrategy.NONE)).into(imagview);
             }
             return false;
         }

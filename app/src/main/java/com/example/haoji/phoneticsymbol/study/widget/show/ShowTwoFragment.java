@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.widget;
+package com.example.haoji.phoneticsymbol.study.widget.show;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

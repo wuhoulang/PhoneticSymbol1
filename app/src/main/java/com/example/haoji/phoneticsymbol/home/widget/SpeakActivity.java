@@ -175,7 +175,7 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
                             min = min + length;
                             Log.e("SpeakActivity", "count:" + count);
                             publishProgress(String.valueOf(min));
-                            Thread.sleep(25);
+                            Thread.sleep(2);
                         }
 
                     } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.widget;
+package com.example.haoji.phoneticsymbol.study.widget.show;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,16 +18,16 @@ import com.example.haoji.phoneticsymbol.R;
  */
 
 @SuppressLint("ValidFragment")
-public class ShowFourFragment extends Fragment {
+public class ShowOneFragment extends Fragment {
 
     private static Context context;
 
-    public ShowFourFragment() {
+    public ShowOneFragment() {
     }
 
-    public static ShowFourFragment newInstance(Context context1) {
+    public static ShowOneFragment newInstance(Context context1) {
         context = context1;
-        ShowFourFragment fragment = new ShowFourFragment();
+        ShowOneFragment fragment = new ShowOneFragment();
         return fragment;
     }
 
@@ -35,7 +35,7 @@ public class ShowFourFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.show_four,container,false);
+        View view =inflater.inflate(R.layout.show_one,container,false);
         return view;
     }
 

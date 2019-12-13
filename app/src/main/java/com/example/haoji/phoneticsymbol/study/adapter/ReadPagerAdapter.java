@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.adapter;
+package com.example.haoji.phoneticsymbol.study.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -12,19 +12,20 @@ import java.util.List;
  * Created by HAOJI on 2019/11/1.
  */
 
-public class ClassifyPagerAdapter extends FragmentPagerAdapter {
+public class ReadPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
     private List<Fragment> list;
     private List<String> list1;
 
 
-    public ClassifyPagerAdapter(Context context, List<Fragment> list, FragmentManager fm, List<String> list1) {
+    public ReadPagerAdapter(Context context, List<Fragment> list, FragmentManager fm, List<String> list1) {
         super(fm);
         this.context=context;
         this.list=list;
         this.list1=list1;
     }
+
 
     @Override
     public Fragment getItem(int position) {

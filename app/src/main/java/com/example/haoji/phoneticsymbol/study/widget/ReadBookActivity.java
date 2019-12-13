@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.widget;
+package com.example.haoji.phoneticsymbol.study.widget;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import com.example.haoji.phoneticsymbol.R;
-import com.example.haoji.phoneticsymbol.type.adapter.ReadPagerAdapter;
+import com.example.haoji.phoneticsymbol.study.adapter.ReadPagerAdapter;
+import com.example.haoji.phoneticsymbol.study.widget.show.ShowFourFragment;
+import com.example.haoji.phoneticsymbol.study.widget.show.ShowOneFragment;
+import com.example.haoji.phoneticsymbol.study.widget.show.ShowThreeFragment;
+import com.example.haoji.phoneticsymbol.study.widget.show.ShowTwoFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

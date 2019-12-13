@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.widget;
+package com.example.haoji.phoneticsymbol.study.widget.show;
 
 import android.app.Activity;
 import android.os.Bundle;

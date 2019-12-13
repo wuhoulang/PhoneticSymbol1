@@ -1,4 +1,4 @@
-package com.example.haoji.phoneticsymbol.type.widget;
+package com.example.haoji.phoneticsymbol.study.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,24 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.haoji.phoneticsymbol.R;
-import com.example.haoji.phoneticsymbol.type.adapter.BookTwoRecyclerViewAdapter;
-
+import com.example.haoji.phoneticsymbol.study.adapter.BookOneRecyclerViewAdapter;
 
 /**
  * Created by HAOJI on 2019/8/22.
  */
 
 @SuppressLint("ValidFragment")
-public class BookTwoFragment extends Fragment {
+public class BookOneFragment extends Fragment {
 
     private static Context context;
 
-    public BookTwoFragment() {
+    public BookOneFragment() {
     }
 
-    public static BookTwoFragment newInstance(Context context1) {
+    public static BookOneFragment newInstance(Context context1) {
         context = context1;
-        BookTwoFragment fragment = new BookTwoFragment();
+        BookOneFragment fragment = new BookOneFragment();
         return fragment;
     }
 
@@ -38,7 +37,7 @@ public class BookTwoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.book_two,container,false);
+        View view =inflater.inflate(R.layout.book_one,container,false);
         initview(view);
         return view;
     }
@@ -47,7 +46,7 @@ public class BookTwoFragment extends Fragment {
         RecyclerView ry = view.findViewById(R.id.ry_book);
         LinearLayoutManager manager = new LinearLayoutManager(context);
         ry.setLayoutManager(manager);
-        BookTwoRecyclerViewAdapter bo =new BookTwoRecyclerViewAdapter(context);
+        BookOneRecyclerViewAdapter bo =new BookOneRecyclerViewAdapter(context);
         ry.setAdapter(bo);
     }
 }

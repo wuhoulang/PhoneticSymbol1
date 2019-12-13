@@ -19,7 +19,6 @@ import com.example.haoji.phoneticsymbol.base.BaseFragment;
 import com.example.haoji.phoneticsymbol.home.widget.need.BottomNavigationViewHelper;
 import com.example.haoji.phoneticsymbol.main.widget.ThreeFragment;
 import com.example.haoji.phoneticsymbol.study.widget.StudyFragment;
-import com.example.haoji.phoneticsymbol.type.widget.TwoFragment;
 import com.example.haoji.phoneticsymbol.type.widget.TwoNewFragment;
 import com.example.haoji.phoneticsymbol.utils.PermissionsUtils;
 import com.example.haoji.phoneticsymbol.utils.ScreenAdapterUtil;
