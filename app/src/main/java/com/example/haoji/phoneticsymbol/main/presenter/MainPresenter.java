@@ -1,8 +1,10 @@
 package com.example.haoji.phoneticsymbol.main.presenter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
 import com.example.haoji.phoneticsymbol.home.interf.FiveMethod;
 import com.example.haoji.phoneticsymbol.home.interf.ModelCallback;
@@ -38,6 +40,7 @@ public class MainPresenter implements ThreeMethod {
         this.successCallBack=successCallBack;
         Intent intent =new Intent(context, LoginActivity.class);
         context.startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 
     public static void logCallback() {

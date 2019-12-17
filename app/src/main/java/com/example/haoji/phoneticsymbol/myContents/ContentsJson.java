@@ -23,7 +23,16 @@ public class ContentsJson {
 
     public static final String BASE_ONE_JSON_DAN_ONE1 = "json_biao/line_one_dan_one.json";
 
+    public static final String BASE_TEXT = "json_biao/textview.json";
+
     public static final String BASE_ONE_JSON_MUSIC = URL_BASE+"/video/music.mp3";
+
+
+    public static final String BASE_ONE_JSON_VIDEO = URL_BASE+"/flash/0000_gif.mp4";
+
+    public static final String BASE_ONE_JSON_VIDEO_REAL = URL_BASE+"/flash_man/0000_video.mp4";
+
+
 
 
 }

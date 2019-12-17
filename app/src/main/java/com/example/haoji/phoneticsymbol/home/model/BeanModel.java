@@ -3,6 +3,8 @@ package com.example.haoji.phoneticsymbol.home.model;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
+import com.example.haoji.phoneticsymbol.home.interf.RetrofitTextCallback;
 import com.example.haoji.phoneticsymbol.myContents.ApiUrl;
 import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
@@ -116,6 +118,38 @@ public class BeanModel {
 
             @Override
             public void onFailure(retrofit2.Call<DataBean1> call, Throwable t) {
+                Log.e("OneFragment", "请求失败信息: " +t.getMessage());
+//                tv_retrofit.setText(t.getMessage());
+            }
+        });
+    }
+
+    public static void requestGetTextRetrofit(Context context, String url, final RetrofitTextCallback modelCallback){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .readTimeout(ContentsJson.DEFAULT_TIME, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(ContentsJson.DEFAULT_TIME, TimeUnit.SECONDS)//设置请求超时时间
+                .writeTimeout(ContentsJson.DEFAULT_TIME,TimeUnit.SECONDS)//设置写入超时时间
+                .addInterceptor(new HttpLoggingInterceptor())//添加打印拦截器
+                .retryOnConnectionFailure(true)//设置出现错误进行重新连接。
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(ContentsJson.URL_BASE)
+                //添加GSON解析：返回数据转换成GSON类型
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiUrl api = retrofit.create(ApiUrl.class);
+        retrofit2.Call<TextViewDataBean> demo = api.getDemo();
+        demo.enqueue(new retrofit2.Callback<TextViewDataBean>() {
+            @Override
+            public void onResponse(retrofit2.Call<TextViewDataBean> call, retrofit2.Response<TextViewDataBean> response) {
+                Log.e("OneFragment", "请求成功信息: "+response.body().toString());
+                modelCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<TextViewDataBean> call, Throwable t) {
                 Log.e("OneFragment", "请求失败信息: " +t.getMessage());
 //                tv_retrofit.setText(t.getMessage());
             }

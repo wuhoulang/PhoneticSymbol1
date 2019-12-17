@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/tv_practice_one"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="真人发音" />
+
+    <RelativeLayout
+        android:layout_below="@+id/tv_practice_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <VideoView
+        android:layout_centerInParent="true"
+        android:id="@+id/vv_practice_one"
+        android:layout_width="200dp"
+        android:layout_margin="15dp"
+        android:layout_height="200dp" />
+
+
+        <ImageView
+            android:id="@+id/iv_practice_show"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/iv_practice"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/listening_play_green"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

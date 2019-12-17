@@ -1,6 +1,7 @@
 package com.example.haoji.phoneticsymbol.myContents;
 
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
+import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -15,7 +16,10 @@ public interface ApiUrl {
     @GET(ContentsJson.BASE_ONE_JSON_DAN_ONE1)
     Call<DataBean1> getRetrofit();
 
-    @GET(ContentsJson.BASE_ONE_JSON_DAN_ONE1)
-    Observable<DataBean1> getDemo();
+    @GET(ContentsJson.BASE_TEXT)
+    Call<TextViewDataBean> getDemo();
+
+//    @GET(ContentsJson.BASE_ONE_JSON_DAN_ONE1)
+//    Observable<TextViewDataBean> getDemo();
 
 }

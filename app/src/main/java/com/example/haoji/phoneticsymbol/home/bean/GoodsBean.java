@@ -13,13 +13,15 @@ public class GoodsBean implements Serializable {
     private String picture;
     private String music;
     private String yinbiao;
+    private String prc;
 
-    public GoodsBean (String chinesename,String englishname ,String picture,String music,String yinbiao){
+    public GoodsBean (String chinesename,String englishname ,String picture,String music,String yinbiao,String prc){
         this.englishname=englishname;
         this.chinesename=chinesename;
         this.picture=picture;
         this.music=music;
         this.yinbiao=yinbiao;
+        this.prc=prc;
     }
 
     public String getEnglishname() {
@@ -60,5 +62,13 @@ public class GoodsBean implements Serializable {
 
     public void setYinbiao(String yinbiao) {
         this.yinbiao = yinbiao;
+    }
+
+    public String getPrc() {
+        return prc;
+    }
+
+    public void setPrc(String prc) {
+        this.prc = prc;
     }
 }

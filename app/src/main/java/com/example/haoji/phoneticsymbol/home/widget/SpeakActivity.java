@@ -18,11 +18,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
+import com.example.haoji.phoneticsymbol.home.interf.SuccessTextCallBack;
+import com.example.haoji.phoneticsymbol.home.presenter.HomePresenter;
 import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.component.MusicServices;
 import com.example.haoji.phoneticsymbol.home.bean.GoodsBean;
 import com.example.haoji.phoneticsymbol.main.widget.RegisterActivity;
+
+import retrofit2.Response;
 
 
 /**
@@ -41,11 +46,21 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
     private MusicServices service;
     public boolean pro = false;
     public static final int OBX = 0;
+    private FragmentTransaction ft;
+    private int control_imagefragment = 2;
+    private PracticeWordsFragment fw;
+    private PracticeWordsThreeFragment fw3;
+    private PracticeWordsTwoFragment fw2;
 
-    private Handler handler =new Handler(new Handler.Callback() {
+    private FragmentTransaction bt;
+    private FragmentManager manager;
+
+
+
+    private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
-            if (message.what==OBX){
+            if (message.what == OBX) {
                 id_title.setText("前元音");
                 Glide.with(context).load(ContentsJson.BASE + goodsBean.getYinbiao()).into(id_title_p);
             }
@@ -58,7 +73,7 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speak_fragment);
-        min = 20;
+        min = 25;
         id_title = findViewById(R.id.id_title);
         btn_last = findViewById(R.id.btn_last);
         btn_next = findViewById(R.id.btn_next);
@@ -69,6 +84,8 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 15);
         goodsBean = (GoodsBean) intent.getSerializableExtra("name");
+        String prc = goodsBean.getPrc();
+        Log.e("SpeakActivity","------prc:"+prc);
         if (goodsBean != null) {
             switch (position) {
                 case 0:
@@ -134,16 +151,21 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
             }
 
         }
+
+        fw = PracticeWordsFragment.newInstance(context);
+        fw2 = PracticeWordsTwoFragment.newInstance(context);
+        fw3 = PracticeWordsThreeFragment.newInstance(context,prc);
+
         imageViewFragment = new ImageViewFragment(goodsBean, context, service, position);
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
+        manager = getSupportFragmentManager();
+        ft = manager.beginTransaction();
         ft.replace(R.id.id_imageview_show, imageViewFragment);
         ft.commit();
     }
 
     private void sendMessage() {
-        Message msg =new Message();
-        msg.what = OBX ;
+        Message msg = new Message();
+        msg.what = OBX;
         handler.sendMessage(msg);
     }
 
@@ -169,31 +191,38 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
                     if (min == 100) {
                         min = 0;
                     }
+                    if (control_imagefragment == 5) {
+                        control_imagefragment = 1;
+                    }
+
                     try {
-                        while (count < 20) {
+                        while (count < 25) {
                             count = count + 1;
                             min = min + length;
                             Log.e("SpeakActivity", "count:" + count);
                             publishProgress(String.valueOf(min));
-                            Thread.sleep(10);
+                            Thread.sleep(5);
                         }
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    if (min!=20){
+                    if (min != 25) {
+                            control_imagefragment = control_imagefragment - 2;
+                        Log.e("SpeakActivity", "control_imagefragment:" + control_imagefragment);
                         try {
-                            while (count < 20) {
+                            while (count < 25) {
                                 count = count + 1;
                                 min = min - length;
                                 Log.e("SpeakActivity", "count:" + count);
                                 publishProgress(String.valueOf(min));
-                                Thread.sleep(25);
+                                Thread.sleep(5);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                     }
 
                 }
@@ -201,26 +230,50 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
 
 
             return null;
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            id_progressBar.setProgress(Integer.parseInt(values[0]));
+            Log.e("SpeakActivity", "onProgressUpdate:" + values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            bt = manager.beginTransaction();
+
+            if (control_imagefragment == 1) {
+//                ft5 = manager.beginTransaction();
+                bt.replace(R.id.id_imageview_show, imageViewFragment);
+                bt.commit();
+                control_imagefragment = 2;
+                Log.e("SpeakActivity", "onProgressUpdate:0");
+            } else if (control_imagefragment == 2) {
+//                bt = manager.beginTransaction();
+                bt.replace(R.id.id_imageview_show, fw);
+                bt.commit();
+                control_imagefragment = 3;
+            } else if (control_imagefragment == 3) {
+//                ft3 = manager.beginTransaction();
+                bt.replace(R.id.id_imageview_show, fw2);
+                bt.commit();
+                control_imagefragment = 4;
+            }else if (control_imagefragment == 4){
+                bt.replace(R.id.id_imageview_show, fw3);
+                bt.commit();
+                control_imagefragment = 5;
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+
     }
-
-
-    @Override
-    protected void onProgressUpdate(String... values) {
-        id_progressBar.setProgress(Integer.parseInt(values[0]));
-        Log.e("SpeakActivity", "onProgressUpdate:" + values[0]);
-    }
-
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-    }
-
-    @Override
-    protected void onCancelled() {
-        super.onCancelled();
-    }
-
-}
 
     @Override
     protected void onDestroy() {
@@ -235,6 +288,9 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
                 new MyAsyncTask(pro).execute();
                 break;
             case R.id.btn_last:
+                if (min == 25){
+                    return;
+                }
                 pro = false;
                 new MyAsyncTask(pro).execute();
                 break;

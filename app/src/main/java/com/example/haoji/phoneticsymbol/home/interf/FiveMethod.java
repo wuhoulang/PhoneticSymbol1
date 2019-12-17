@@ -14,4 +14,7 @@ public interface FiveMethod {
 
      void getRetrofitBean(Context context, String base_url, SuccessCallBack successCallBack);
 
+
+     void getTextRetrofitBean(Context context, String base_url, SuccessTextCallBack successCallBack);
+
 }

@@ -3,13 +3,18 @@ package com.example.haoji.phoneticsymbol.home.presenter;
 import android.content.Context;
 
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
+import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
 import com.example.haoji.phoneticsymbol.home.interf.FiveMethod;
 import com.example.haoji.phoneticsymbol.home.interf.ModelCallback;
 import com.example.haoji.phoneticsymbol.home.interf.RetrofitModelCallback;
+import com.example.haoji.phoneticsymbol.home.interf.RetrofitTextCallback;
+import com.example.haoji.phoneticsymbol.home.interf.SuccessTextCallBack;
 import com.example.haoji.phoneticsymbol.home.model.BeanModel;
 import com.example.haoji.phoneticsymbol.home.view.ProgreesView;
 import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
 import com.example.haoji.phoneticsymbol.main.presenter.MainPresenter;
+
+import retrofit2.Response;
 
 /**
  * Created by HAOJI on 2019/11/25.
@@ -24,6 +29,9 @@ public class HomePresenter implements FiveMethod {
     private SuccessCallBack successCallBack;
 
     public ProgreesView mView;
+
+    public HomePresenter(){
+    }
 
     public HomePresenter(ProgreesView view){
         this.mView = view;
@@ -79,11 +87,22 @@ public class HomePresenter implements FiveMethod {
             public void onFailure(String msg) {
 
             }
-
-
         });
+    }
 
+    @Override
+    public void getTextRetrofitBean(Context context, String base_url, final SuccessTextCallBack successCallBack) {
+        BeanModel.requestGetTextRetrofit(context, "", new RetrofitTextCallback() {
+            @Override
+            public void onSuccess(Response<TextViewDataBean> data) {
+                successCallBack.IsSuccess(data);
+            }
 
+            @Override
+            public void onFailure(String msg) {
+
+            }
+        });
     }
 
 

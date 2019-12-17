@@ -10,14 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.component.MusicServices;
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
 import com.example.haoji.phoneticsymbol.home.bean.GoodsBean;
+import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
+import com.example.haoji.phoneticsymbol.home.interf.SuccessTextCallBack;
+import com.example.haoji.phoneticsymbol.home.presenter.HomePresenter;
 import com.example.haoji.phoneticsymbol.home.widget.SpeakActivity;
+import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 
 import java.io.Serializable;
 import java.util.List;
+
+import retrofit2.Response;
+
+import static com.example.haoji.phoneticsymbol.type.widget.TwoNewFragment.context;
 
 
 /**
@@ -25,6 +34,7 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+    private HomePresenter homePresenter;
     //extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder
     public Context mContext;
     public MusicServices service;
@@ -72,11 +82,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<DataBean1.LineTwelveBean.ContentBeanXXXXXXXXXXX.PageDataBeanXXXXXXXXXXX> page_data12;
     private List<DataBean1.LineThirteenBean.ContentBeanXXXXXXXXXXXX.PageDataBeanXXXXXXXXXXXX> page_data13;
     private List<DataBean1.LineFourteenBean.ContentBeanXXXXXXXXXXXXX.PageDataBeanXXXXXXXXXXXXX> page_data14;
+    private List<TextViewDataBean.PrioneeBean> prionee;
+    private List<TextViewDataBean.PrioneeTwoBean> prionee2;
+    private List<TextViewDataBean.PrioneeThreeBean> prionee3;
+    private List<TextViewDataBean.PrioneeFourBean> prionee4;
+    private List<TextViewDataBean.PrioneeFiveBean> prionee5;
+    private List<TextViewDataBean.PrioneeSixBean> prionee6;
+    private List<TextViewDataBean.PrioneeSevenBean> prionee7;
+    private List<TextViewDataBean.PrioneeEightBean> prionee8;
+    private List<TextViewDataBean.PrioneeNineBean> prionee9;
+    private List<TextViewDataBean.PrioneeTenBean> prionee10;
+    private List<TextViewDataBean.PrioneeElevenBean> prionee11;
+    private List<TextViewDataBean.PrioneeTwelveBean> prionee12;
+    private List<TextViewDataBean.PrioneethirteenBean> prionee13;
+    private List<TextViewDataBean.PrioneeFourteenBean> prionee14;
 
 
     public RecyclerViewAdapter(Context context, List<DataBean1.LineOneBean.ContentBean.PageDataBean> page_data1, List<DataBean1.LineTwoBean.ContentBeanX.PageDataBeanX> page_data2, List<DataBean1.LineThreeBean.ContentBeanXX.PageDataBeanXX> page_data3, List<DataBean1.LineFourBean.ContentBeanXXX.PageDataBeanXXX> page_data4, List<DataBean1.LineFiveBean.ContentBeanXXXX.PageDataBeanXXXX> page_data5, List<DataBean1.LineSixBean.ContentBeanXXXXX.PageDataBeanXXXXX> page_data6, List<DataBean1.LineSevenBean.ContentBeanXXXXXX.PageDataBeanXXXXXX> page_data7, List<DataBean1.LineEightBean.ContentBeanXXXXXXX.PageDataBeanXXXXXXX> page_data8,
                                List<DataBean1.LineNineBean.ContentBeanXXXXXXXX.PageDataBeanXXXXXXXX> page_data9, List<DataBean1.LineTenBean.ContentBeanXXXXXXXXX.PageDataBeanXXXXXXXXX> page_data10, List<DataBean1.LineElevenBean.ContentBeanXXXXXXXXXX.PageDataBeanXXXXXXXXXX> page_data11, List<DataBean1.LineTwelveBean.ContentBeanXXXXXXXXXXX.PageDataBeanXXXXXXXXXXX> page_data12, List<DataBean1.LineThirteenBean.ContentBeanXXXXXXXXXXXX.PageDataBeanXXXXXXXXXXXX> page_data13, List<DataBean1.LineFourteenBean.ContentBeanXXXXXXXXXXXXX.PageDataBeanXXXXXXXXXXXXX> page_data14) {
-                this.mContext = context;
+        this.mContext = context;
         this.page_data1 = page_data1;
         this.page_data2 = page_data2;
         this.page_data3 = page_data3;
@@ -91,6 +115,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.page_data12 = page_data12;
         this.page_data13 = page_data13;
         this.page_data14 = page_data14;
+        homePresenter = new HomePresenter();
     }
 
 
@@ -223,43 +248,38 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (position==0||position == 3 || position == 5 || position == 7 || position == 9 || position == 11 || position == 13) {
-            GridViewAdapter ga = new GridViewAdapter(mContext, position);
-            holder.id_gv.setAdapter(ga);
-            GridViewAdapter2 ga2 = new GridViewAdapter2(mContext, position);
-            holder.id_gv2.setAdapter(ga2);
-            setItemData(holder, position);
-        }
-
+        getTextData(position,holder);
 
     }
 
-    private void setItemData(@NonNull ViewHolder holder, final int pos) {
+    private void setItemData(@NonNull final ViewHolder holder, final int pos, final List<TextViewDataBean.PrioneeBean> prionee, final List<TextViewDataBean.PrioneeTwoBean> prionee2, final List<TextViewDataBean.PrioneeThreeBean> prionee3, final List<TextViewDataBean.PrioneeFourBean> prionee4, final List<TextViewDataBean.PrioneeFiveBean> prionee5,
+                             final List<TextViewDataBean.PrioneeSixBean> prionee6, final List<TextViewDataBean.PrioneeSevenBean> prionee7, final List<TextViewDataBean.PrioneeEightBean> prionee8, final List<TextViewDataBean.PrioneeNineBean> prionee9, final List<TextViewDataBean.PrioneeTenBean> prionee10, final List<TextViewDataBean.PrioneeElevenBean> prionee11, final List<TextViewDataBean.PrioneeTwelveBean> prionee12,
+                             final List<TextViewDataBean.PrioneethirteenBean> prionee13, final List<TextViewDataBean.PrioneeFourteenBean> prionee14) {
         holder.id_gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                GoodsBean goodsBean1 =null;
+                GoodsBean goodsBean1 = null;
                 Intent intent = new Intent(mContext, SpeakActivity.class);
                 if (pos == 0) {
-                     goodsBean1 =new GoodsBean(page_data1.get(position).getChinesename(),page_data1.get(position).getEnglishname(),page_data1.get(position).getPicture(),page_data1.get(position).getMusic(),page_data1.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data1.get(position).getChinesename(), page_data1.get(position).getEnglishname(), page_data1.get(position).getPicture(), page_data1.get(position).getMusic(), page_data1.get(position).getYinbiao(),prionee.get(position).getWord());
                     intent.putExtra("name", goodsBean1);
                 } else if (pos == 3) {
-                    goodsBean1 =new GoodsBean(page_data3.get(position).getChinesename(),page_data3.get(position).getEnglishname(),page_data3.get(position).getPicture(),page_data3.get(position).getMusic(),page_data3.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data3.get(position).getChinesename(), page_data3.get(position).getEnglishname(), page_data3.get(position).getPicture(), page_data3.get(position).getMusic(), page_data3.get(position).getYinbiao(),prionee3.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data3);
                 } else if (pos == 5) {
-                    goodsBean1 =new GoodsBean(page_data5.get(position).getChinesename(),page_data5.get(position).getEnglishname(),page_data5.get(position).getPicture(),page_data5.get(position).getMusic(),page_data5.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data5.get(position).getChinesename(), page_data5.get(position).getEnglishname(), page_data5.get(position).getPicture(), page_data5.get(position).getMusic(), page_data5.get(position).getYinbiao(),prionee5.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data5);
-                }else if (pos == 7) {
-                    goodsBean1 =new GoodsBean(page_data7.get(position).getChinesename(),page_data7.get(position).getEnglishname(),page_data7.get(position).getPicture(),page_data7.get(position).getMusic(),page_data7.get(position).getYinbiao());
+                } else if (pos == 7) {
+                    goodsBean1 = new GoodsBean(page_data7.get(position).getChinesename(), page_data7.get(position).getEnglishname(), page_data7.get(position).getPicture(), page_data7.get(position).getMusic(), page_data7.get(position).getYinbiao(),prionee7.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data7);
-                }else if (pos == 9) {
-                    goodsBean1 =new GoodsBean(page_data9.get(position).getChinesename(),page_data9.get(position).getEnglishname(),page_data9.get(position).getPicture(),page_data9.get(position).getMusic(),page_data9.get(position).getYinbiao());
+                } else if (pos == 9) {
+                    goodsBean1 = new GoodsBean(page_data9.get(position).getChinesename(), page_data9.get(position).getEnglishname(), page_data9.get(position).getPicture(), page_data9.get(position).getMusic(), page_data9.get(position).getYinbiao(),prionee9.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data9);
-                }else if (pos == 11) {
-                    goodsBean1 =new GoodsBean(page_data11.get(position).getChinesename(),page_data11.get(position).getEnglishname(),page_data11.get(position).getPicture(),page_data11.get(position).getMusic(),page_data11.get(position).getYinbiao());
+                } else if (pos == 11) {
+                    goodsBean1 = new GoodsBean(page_data11.get(position).getChinesename(), page_data11.get(position).getEnglishname(), page_data11.get(position).getPicture(), page_data11.get(position).getMusic(), page_data11.get(position).getYinbiao(),prionee11.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data11);
-                }else if (pos == 13) {
-                    goodsBean1 =new GoodsBean(page_data13.get(position).getChinesename(),page_data13.get(position).getEnglishname(),page_data13.get(position).getPicture(),page_data13.get(position).getMusic(),page_data13.get(position).getYinbiao());
+                } else if (pos == 13) {
+                    goodsBean1 = new GoodsBean(page_data13.get(position).getChinesename(), page_data13.get(position).getEnglishname(), page_data13.get(position).getPicture(), page_data13.get(position).getMusic(), page_data13.get(position).getYinbiao(),prionee13.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data13);
                 }
                 intent.putExtra("name", goodsBean1);
@@ -275,25 +295,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 GoodsBean goodsBean1 = null;
                 Intent intent = new Intent(mContext, SpeakActivity.class);
                 if (pos == 0) {
-                    goodsBean1 =new GoodsBean(page_data2.get(position).getChinesename(),page_data2.get(position).getEnglishname(),page_data2.get(position).getPicture(),page_data2.get(position).getMusic(),page_data2.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data2.get(position).getChinesename(), page_data2.get(position).getEnglishname(), page_data2.get(position).getPicture(), page_data2.get(position).getMusic(), page_data2.get(position).getYinbiao(),prionee2.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data2);
                 } else if (pos == 3) {
-                    goodsBean1 =new GoodsBean(page_data4.get(position).getChinesename(),page_data4.get(position).getEnglishname(),page_data4.get(position).getPicture(),page_data4.get(position).getMusic(),page_data4.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data4.get(position).getChinesename(), page_data4.get(position).getEnglishname(), page_data4.get(position).getPicture(), page_data4.get(position).getMusic(), page_data4.get(position).getYinbiao(),prionee4.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data4);
                 } else if (pos == 5) {
-                    goodsBean1 =new GoodsBean(page_data6.get(position).getChinesename(),page_data6.get(position).getEnglishname(),page_data6.get(position).getPicture(),page_data6.get(position).getMusic(),page_data6.get(position).getYinbiao());
+                    goodsBean1 = new GoodsBean(page_data6.get(position).getChinesename(), page_data6.get(position).getEnglishname(), page_data6.get(position).getPicture(), page_data6.get(position).getMusic(), page_data6.get(position).getYinbiao(),prionee6.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data6);
-                }else if (pos == 7) {
-                    goodsBean1 =new GoodsBean(page_data8.get(position).getChinesename(),page_data8.get(position).getEnglishname(),page_data8.get(position).getPicture(),page_data8.get(position).getMusic(),page_data8.get(position).getYinbiao());
+                } else if (pos == 7) {
+                    goodsBean1 = new GoodsBean(page_data8.get(position).getChinesename(), page_data8.get(position).getEnglishname(), page_data8.get(position).getPicture(), page_data8.get(position).getMusic(), page_data8.get(position).getYinbiao(),prionee8.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data8);
-                }else if (pos == 9) {
-                    goodsBean1 =new GoodsBean(page_data10.get(position).getChinesename(),page_data10.get(position).getEnglishname(),page_data10.get(position).getPicture(),page_data10.get(position).getMusic(),page_data10.get(position).getYinbiao());
+                } else if (pos == 9) {
+                    goodsBean1 = new GoodsBean(page_data10.get(position).getChinesename(), page_data10.get(position).getEnglishname(), page_data10.get(position).getPicture(), page_data10.get(position).getMusic(), page_data10.get(position).getYinbiao(),prionee10.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data10);
-                }else if (pos == 11) {
-                    goodsBean1 =new GoodsBean(page_data12.get(position).getChinesename(),page_data12.get(position).getEnglishname(),page_data12.get(position).getPicture(),page_data12.get(position).getMusic(),page_data12.get(position).getYinbiao());
+                } else if (pos == 11) {
+                    goodsBean1 = new GoodsBean(page_data12.get(position).getChinesename(), page_data12.get(position).getEnglishname(), page_data12.get(position).getPicture(), page_data12.get(position).getMusic(), page_data12.get(position).getYinbiao(),prionee12.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data12);
-                }else if (pos == 13) {
-                    goodsBean1 =new GoodsBean(page_data14.get(position).getChinesename(),page_data14.get(position).getEnglishname(),page_data14.get(position).getPicture(),page_data14.get(position).getMusic(),page_data14.get(position).getYinbiao());
+                } else if (pos == 13) {
+                    goodsBean1 = new GoodsBean(page_data14.get(position).getChinesename(), page_data14.get(position).getEnglishname(), page_data14.get(position).getPicture(), page_data14.get(position).getMusic(), page_data14.get(position).getYinbiao(),prionee14.get(position).getWord());
                     intent.putExtra("name", (Serializable) page_data14);
                 }
                 intent.putExtra("name", goodsBean1);
@@ -307,6 +327,43 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return 14;
+    }
+
+    private void getTextData(final int position, final ViewHolder holder) {
+        homePresenter.getTextRetrofitBean(context, ContentsJson.BASE_TEXT, new SuccessTextCallBack() {
+            @Override
+            public void IsFailed(String msg) {
+
+            }
+
+            @Override
+            public void IsSuccess(Response<TextViewDataBean> data) {
+                prionee = data.body().getPrionee();
+                prionee2 = data.body().getPrioneeTwo();
+                prionee3 = data.body().getPrioneeThree();
+                prionee4 = data.body().getPrioneeFour();
+                prionee5 = data.body().getPrioneeFive();
+                prionee6 = data.body().getPrioneeSix();
+                prionee7 = data.body().getPrioneeSeven();
+                prionee8 = data.body().getPrioneeEight();
+                prionee9 = data.body().getPrioneeNine();
+                prionee10 = data.body().getPrioneeTen();
+                prionee11 = data.body().getPrioneeEleven();
+                prionee12 = data.body().getPrioneeTwelve();
+                prionee13 = data.body().getPrioneethirteen();
+                prionee14 = data.body().getPrioneeFourteen();
+                if (prionee==null){
+                    return;
+                }
+                if (position == 0 || position == 3 || position == 5 || position == 7 || position == 9 || position == 11 || position == 13) {
+                    GridViewAdapter ga = new GridViewAdapter(mContext, position);
+                    holder.id_gv.setAdapter(ga);
+                    GridViewAdapter2 ga2 = new GridViewAdapter2(mContext, position);
+                    holder.id_gv2.setAdapter(ga2);
+                    setItemData(holder, position,prionee,prionee2,prionee3,prionee4,prionee5,prionee6,prionee7,prionee8,prionee9,prionee10,prionee11,prionee12,prionee13,prionee14);
+                }
+            }
+        });
     }
 
 
