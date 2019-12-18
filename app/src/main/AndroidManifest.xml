@@ -61,6 +61,10 @@
             android:configChanges="orientation|keyboardHidden">
         </activity>
 
+        <activity android:name=".main.widget.SubscribeActivity">
+
+        </activity>
+
         <service android:name="com.example.haoji.phoneticsymbol.component.MusicServices">
         </service>
 

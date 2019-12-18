@@ -8,7 +8,6 @@ import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
 import com.example.haoji.phoneticsymbol.home.interf.FiveMethod;
 import com.example.haoji.phoneticsymbol.home.interf.ModelCallback;
-import com.example.haoji.phoneticsymbol.home.interf.RetrofitModelCallback;
 import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
 import com.example.haoji.phoneticsymbol.home.model.BeanModel;
 import com.example.haoji.phoneticsymbol.home.view.ProgreesView;

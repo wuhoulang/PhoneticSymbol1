@@ -6,7 +6,6 @@ import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
 import com.example.haoji.phoneticsymbol.home.bean.TextViewDataBean;
 import com.example.haoji.phoneticsymbol.home.interf.FiveMethod;
 import com.example.haoji.phoneticsymbol.home.interf.ModelCallback;
-import com.example.haoji.phoneticsymbol.home.interf.RetrofitModelCallback;
 import com.example.haoji.phoneticsymbol.home.interf.RetrofitTextCallback;
 import com.example.haoji.phoneticsymbol.home.interf.SuccessTextCallBack;
 import com.example.haoji.phoneticsymbol.home.model.BeanModel;
@@ -14,6 +13,7 @@ import com.example.haoji.phoneticsymbol.home.view.ProgreesView;
 import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
 import com.example.haoji.phoneticsymbol.main.presenter.MainPresenter;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 /**
@@ -77,7 +77,7 @@ public class HomePresenter implements FiveMethod {
 
     @Override
     public void getRetrofitBean(Context context, String base_url, final SuccessCallBack successCallBack) {
-        BeanModel.requestGetRetrofit(context, base_url, new RetrofitModelCallback() {
+        BeanModel.requestGetRetrofit(context, base_url, new RetrofitTextCallback<DataBean1>() {
             @Override
             public void onSuccess(retrofit2.Response<DataBean1> data) {
                 successCallBack.IsReSuccess(data);
@@ -91,8 +91,9 @@ public class HomePresenter implements FiveMethod {
     }
 
     @Override
-    public void getTextRetrofitBean(Context context, String base_url, final SuccessTextCallBack successCallBack) {
-        BeanModel.requestGetTextRetrofit(context, "", new RetrofitTextCallback() {
+    public void getTextRetrofitBean(Context context, String url, final SuccessTextCallBack successCallBack) {
+
+        BeanModel.requestGetTextRetrofit(context, url, new RetrofitTextCallback<TextViewDataBean>() {
             @Override
             public void onSuccess(Response<TextViewDataBean> data) {
                 successCallBack.IsSuccess(data);
@@ -103,6 +104,7 @@ public class HomePresenter implements FiveMethod {
 
             }
         });
+
     }
 
 

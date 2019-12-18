@@ -6,43 +6,92 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.haoji.phoneticsymbol.R;
+import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
+import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
+import com.example.haoji.phoneticsymbol.type.model.UserData;
 import com.example.haoji.phoneticsymbol.type.adapter.LearnMeRecyclerViewAdapter;
+import com.example.haoji.phoneticsymbol.type.model.TypeModel;
+import com.example.haoji.phoneticsymbol.type.presenter.TypePresenter;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Response;
+import zuo.biao.library.util.Log;
 
 /**
  * Created by HAOJI on 2019/12/11.
  */
 
-public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHeadListener{
-    private MyScrollView view_hover;
-    private RecyclerView recyclerView;
-    private RelativeLayout headBarLayout;
+public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHeadListener {
+
+    @BindView(R.id.iv_hover_black)
+    public ImageView iv_hover_black;
+
+    @BindView(R.id.id_add_study)
+    public Button id_add_study;
+
+    @BindView(R.id.click_to)
+    public TextView click_to;
+
+    @BindView(R.id.ho_recyclerview)
+    public RecyclerView recyclerView;
+
+    @BindView(R.id.view_hover)
+    public MyScrollView view_hover;
+
+    @BindView(R.id.head_bar_linear)
+    public RelativeLayout headBarLayout;
+
     private LinearLayoutManager manager;
     private boolean fixedFlag = false, resetFlag = false;
-    private List<String> headTitles = new ArrayList<>();
-    private int selectPos = 0;
-    private TextView other,airStop;
-    private ImageView iv_hover_black;
+    private TypePresenter typePresenter;
+    private Context context = ShowDetailActivity.this;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hover);
-        view_hover = (MyScrollView) findViewById(R.id.view_hover);
-        iv_hover_black = findViewById(R.id.iv_hover_black);
-        view_hover.setFixHeadListener(this);
-        headBarLayout = (RelativeLayout) findViewById(R.id.head_bar_linear);
-        findViewById(R.id.click_to).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @OnClick({R.id.iv_hover_black,R.id.id_add_study,R.id.click_to})
+    public void onViewClicked(View v){
+        switch (v.getId()) {
+            case R.id.iv_hover_black:
+                finish();
+                break;
+            case R.id.id_add_study:
+                if (UserData.userId.equals("")){
+                    return;
+                }
+                String userId = UserData.userId;
+                typePresenter.getPostBean(context, "http://192.168.0.44:9093/collect", "http://dsfdsfdsf", userId, "的方式fsafs收到", "胜多负少的", new SuccessCallBack() {
+                    @Override
+                    public void IsSuccess(String data) {
+                        Log.e("ShowDetailActivity","--data:"+data.toString());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context,"订阅成功",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void IsFailed(String msg) {
+
+                    }
+
+                    @Override
+                    public void IsReSuccess(Response<DataBean1> data) {
+
+                    }
+                });
+                Log.e("ShowDetailActivity","--id_add_study---click-");
+                break;
+            case R.id.click_to:
                 clearlyMove2Position(11);
                 view_hover.post(new Runnable() {
                     @Override
@@ -50,24 +99,37 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
                         view_hover.scrollTo(0, headBarLayout.getTop());
                     }
                 });
-            }
-        });
+                Log.e("ShowDetailActivity","--click_to---click-");
+                break;
+            default:
+                break;
+        }
+    }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hover);
+        ButterKnife.bind(this);
+
+        data();
+        initListener();
+
+    }
+
+    private void data() {
+         typePresenter =new TypePresenter(this);
+        view_hover.setFixHeadListener(this);
         manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.getLayoutParams().height = getScreenHeight(this) - dp2px(this, 50);
-        LearnMeRecyclerViewAdapter lv =new LearnMeRecyclerViewAdapter(this);
+        LearnMeRecyclerViewAdapter lv = new LearnMeRecyclerViewAdapter(this);
         recyclerView.setAdapter(lv);
+    }
 
-        iv_hover_black.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    private void initListener() {
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -76,11 +138,11 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
                 int last = manager.findLastVisibleItemPosition();
                 int first = manager.findFirstVisibleItemPosition();
                 int count = manager.getChildCount();
-
                 System.out.println("first=" + first + ";last=" + last + ";count=" + count);
             }
 
         });
+
     }
 
     //move Method without animation
@@ -155,5 +217,6 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
 
 }

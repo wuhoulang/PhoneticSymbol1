@@ -2,7 +2,6 @@ package com.example.haoji.phoneticsymbol.main.widget;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -14,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.haoji.phoneticsymbol.type.model.UserData;
 import com.example.haoji.phoneticsymbol.main.presenter.MainPresenter;
 import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 import com.example.haoji.phoneticsymbol.R;
@@ -138,6 +138,9 @@ public class LoginActivity extends Activity implements ProgreesView {
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     int code = jsonObject.getInt("Code");
+                    String userId = jsonObject.getString("Param");
+                    UserData.userId= userId;
+                    Log.e("LoginActivity", "-----userId:" + userId);
                     if (code == 0) {
                         runOnUiThread(new Runnable() {
                             @Override

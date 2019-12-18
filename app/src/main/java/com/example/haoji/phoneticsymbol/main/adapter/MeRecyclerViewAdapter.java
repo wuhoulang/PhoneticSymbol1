@@ -1,5 +1,6 @@
 package com.example.haoji.phoneticsymbol.main.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.main.interf.OnItemClickListener;
 import com.example.haoji.phoneticsymbol.main.widget.SettingActivity;
+import com.example.haoji.phoneticsymbol.main.widget.SubscribeActivity;
 
 /**
  * Created by HAOJI on 2019/10/29.

@@ -37,6 +37,7 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener 
     private TextView tv_person;
     private CircleImageView civ_person;
     private MainPresenter main;
+    private MeRecyclerViewAdapter mv;
 
     private Handler mHandler =new Handler(new Handler.Callback() {
         @Override
@@ -57,8 +58,6 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener 
         }
     });
 
-
-
     public ThreeFragment() {
     }
 
@@ -72,8 +71,25 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener 
     public View initView() {
         View view = View.inflate(context, R.layout.main_fragment, null);
         initview(view);
+        initListener();
         return view;
     }
+
+    private void initListener() {
+
+        mv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.e("onItemClick", "======position:" + position);
+                if (position==5){
+
+                    Intent intent2 =new Intent(context, SubscribeActivity.class);
+                    context.startActivity(intent2);
+                }
+            }
+        });
+    }
+
 
     private void initview(View view) {
         id_ry2 = view.findViewById(R.id.id_ry2);
@@ -86,14 +102,9 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener 
         bt_register.setOnClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         id_ry2.setLayoutManager(linearLayoutManager);
-        MeRecyclerViewAdapter mv = new MeRecyclerViewAdapter(context);
+         mv = new MeRecyclerViewAdapter(context);
         id_ry2.setAdapter(mv);
-        mv.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Log.e("onItemClick", "======position:" + position);
-            }
-        });
+
     }
 
 
