@@ -34,8 +34,6 @@ public class RetrofitUtils {
         return instance;
     }
 
-
-
     public RetrofitUtils(){
          client = new OkHttpClient().newBuilder()
                 .readTimeout(ContentsJson.DEFAULT_TIME, TimeUnit.SECONDS)//设置读取超时时间

@@ -12,4 +12,6 @@ public interface ThreeMethod {
 
      void getLogin(Context context, LoginSuccessCallBack successCallBack);
 
+     void getPostBean(Context context, String url, String account, SuccessCallBack successCallBack);
+
 }

@@ -13,6 +13,7 @@ import com.example.haoji.phoneticsymbol.home.model.BeanModel;
 import com.example.haoji.phoneticsymbol.home.view.ProgreesView;
 import com.example.haoji.phoneticsymbol.main.interf.LoginSuccessCallBack;
 import com.example.haoji.phoneticsymbol.main.interf.ThreeMethod;
+import com.example.haoji.phoneticsymbol.main.model.MainModel;
 import com.example.haoji.phoneticsymbol.main.widget.LoginActivity;
 
 /**
@@ -34,6 +35,8 @@ public class MainPresenter implements ThreeMethod {
 
     }
 
+
+
     @Override
     public void getLogin(Context context, LoginSuccessCallBack successCallBack) {
         this.successCallBack=successCallBack;
@@ -41,6 +44,22 @@ public class MainPresenter implements ThreeMethod {
         context.startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
+
+    @Override
+    public void getPostBean(Context context, String url, String account,final SuccessCallBack successCallBack) {
+         MainModel.requestPostOKhttp(context, url, account, new ModelCallback() {
+             @Override
+             public void onSuccess(String data) {
+                 successCallBack.IsSuccess(data);
+             }
+
+             @Override
+             public void onFailure(String msg) {
+
+             }
+         });
+    }
+
 
     public static void logCallback() {
         successCallBack.loginSuccess();
