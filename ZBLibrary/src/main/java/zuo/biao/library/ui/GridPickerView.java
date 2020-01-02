@@ -21,7 +21,7 @@ import zuo.biao.library.R;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.model.Entry;
 import zuo.biao.library.model.GridPickerConfig;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.ScreenUtil;
 import zuo.biao.library.util.StringUtil;
 import android.annotation.SuppressLint;
@@ -153,7 +153,7 @@ public class GridPickerView extends BaseView<List<Entry<Integer, String>>> {
 	 */
 	public final void init(ArrayList<GridPickerConfig> configList, List<Entry<Integer, String>> lastList) {
 		if (configList == null || configList.size() <= 0) {
-			Log.e(TAG, "initTabs  (configList == null || configList.size() <= 0 " +
+			ZbLog.e(TAG, "initTabs  (configList == null || configList.size() <= 0 " +
 					">> selectedItemPostionList = new ArrayList<Integer>(); return;");
 			return;
 		}
@@ -235,7 +235,7 @@ public class GridPickerView extends BaseView<List<Entry<Integer, String>>> {
 	 */
 	public void bindView(final int tabPosition, List<Entry<Integer, String>> list, int itemPosition) {//GridView
 		if (configList == null || configList.size() <= 0) {
-			Log.e(TAG, "bindView(final int tabPostion, final List<Entry<Integer, String>> list, final int itemPosition) {" +
+			ZbLog.e(TAG, "bindView(final int tabPostion, final List<Entry<Integer, String>> list, final int itemPosition) {" +
 					" >> configList == null || configList.size() <= 0 >> return;");
 			return;
 		}
@@ -245,12 +245,12 @@ public class GridPickerView extends BaseView<List<Entry<Integer, String>>> {
 		}
 
 		if (list == null || list.size() <= 0) {
-			Log.e(TAG, "bindView(final int tabPostion, final List<Entry<Integer, String>> list, final int itemPosition) {" +
+			ZbLog.e(TAG, "bindView(final int tabPostion, final List<Entry<Integer, String>> list, final int itemPosition) {" +
 					" >> list == null || list.size() <= 0 >> return;");
 			return;
 		}
 		if (tabPosition >= MAX_NUM_TABS) {
-			Log.e(TAG, "bindView  tabPosition >= MAX_NUM_TABS,防止恶意添加标签导致数量过多选择困难甚至崩溃 >> return;");
+			ZbLog.e(TAG, "bindView  tabPosition >= MAX_NUM_TABS,防止恶意添加标签导致数量过多选择困难甚至崩溃 >> return;");
 			return;
 		}
 
@@ -316,17 +316,17 @@ public class GridPickerView extends BaseView<List<Entry<Integer, String>>> {
 			length = Math.max(itemPosition, list.size() - itemPosition);
 			for (int i = 1; i <= length; i++) {
 				if (isItemEnabled(list, itemPosition - i)) {
-					Log.i(TAG, "getItemPosition  return " + (itemPosition - i));
+					ZbLog.i(TAG, "getItemPosition  return " + (itemPosition - i));
 					return itemPosition - i;
 				}
 				if (isItemEnabled(list, itemPosition + i)) {
-					Log.i(TAG, "getItemPosition  return " + (itemPosition + i));
+					ZbLog.i(TAG, "getItemPosition  return " + (itemPosition + i));
 					return itemPosition + i;
 				}
 			}
 		}
 
-		Log.i(TAG, "getItemPosition  return " + itemPosition);
+		ZbLog.i(TAG, "getItemPosition  return " + itemPosition);
 		return itemPosition;
 	}
 

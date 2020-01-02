@@ -30,7 +30,7 @@ import java.util.List;
 
 import zuo.biao.library.R;
 import zuo.biao.library.model.Entry;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 
 
@@ -74,14 +74,14 @@ public class GridAdapter extends BaseAdapter {
 	private HashMap<Integer, Boolean> hashMap;//实现选中标记的列表，不需要可以删除。这里可用List<Integer> checkedList代替
 	public boolean getItemChecked(int position) {
 		if (hasCheck == false) {
-			Log.e(TAG, "<<< !!! hasCheck == false  >>>>> ");
+			ZbLog.e(TAG, "<<< !!! hasCheck == false  >>>>> ");
 			return false;
 		}
 		return hashMap.get(position);
 	}
 	public void setItemChecked(int position, boolean isChecked) {
 		if (hasCheck == false) {
-			Log.e(TAG, "<<< !!! hasCheck == false >>>>> ");
+			ZbLog.e(TAG, "<<< !!! hasCheck == false >>>>> ");
 			return;
 		}
 		hashMap.put(position, isChecked);
@@ -183,7 +183,7 @@ public class GridAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					setItemChecked(position, !getItemChecked(position));
-					Log.i(TAG, (getItemChecked(position) ? "" : "取消") + "选择第 " + position + " 个item name=" + name);
+					ZbLog.i(TAG, (getItemChecked(position) ? "" : "取消") + "选择第 " + position + " 个item name=" + name);
 				}
 			});
 		}

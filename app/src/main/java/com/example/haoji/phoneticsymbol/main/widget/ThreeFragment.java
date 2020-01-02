@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.example.haoji.phoneticsymbol.main.interf.LoginSuccessCallBack;
 import com.example.haoji.phoneticsymbol.main.interf.OnItemClickListener;
 import com.example.haoji.phoneticsymbol.main.presenter.MainPresenter;
 import zuo.biao.library.ui.CircleImageView;
+import zuo.biao.library.util.ZbLog;
 
 /**
  * Created by HAOJI on 2019/8/22.
@@ -145,5 +147,11 @@ public class ThreeFragment extends BaseFragment implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ZbLog.e("HomeFragment", "---ondestory----");
     }
 }

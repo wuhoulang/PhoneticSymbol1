@@ -19,7 +19,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**基础底部标签Activity
  * @author Lemon
@@ -71,12 +71,12 @@ public abstract class BaseBottomTabActivity extends BaseActivity {
 	 */
 	protected void setTabSelection(int position) {
 		if (vTabSelectViews == null) {
-			Log.e(TAG, "setTabSelection  vTabSelectViews == null >> return;");
+			ZbLog.e(TAG, "setTabSelection  vTabSelectViews == null >> return;");
 			return;
 		}
 		for (int i = 0; i < vTabSelectViews.length; i++) {
 			if (vTabSelectViews[i] == null) {
-				Log.w(TAG, "setTabSelection  vTabSelectViews[" + i + "] == null >> continue;");
+				ZbLog.w(TAG, "setTabSelection  vTabSelectViews[" + i + "] == null >> continue;");
 				continue;
 			}
 			for (int j = 0; j < vTabSelectViews[i].length; j++) {
@@ -112,7 +112,7 @@ public abstract class BaseBottomTabActivity extends BaseActivity {
 				}
 			} else {
 				if (fragments[position] != null && fragments[position].isVisible()) {
-					Log.w(TAG, "selectFragment currentPosition == position" +
+					ZbLog.w(TAG, "selectFragment currentPosition == position" +
 							" >> fragments[position] != null && fragments[position].isVisible()" +
 							" >> return;	");
 					return;

@@ -2,7 +2,7 @@ package zuo.biao.library.base;
 
 import zuo.biao.library.R;
 import zuo.biao.library.util.DataKeeper;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.SettingUtil;
 import android.app.Application;
 
@@ -25,7 +25,7 @@ public class BaseApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.d(TAG, "项目启动 >>>>>>>>>>>>>>>>>>>> \n\n");
+		ZbLog.d(TAG, "项目启动 >>>>>>>>>>>>>>>>>>>> \n\n");
 		
 		init(this);
 	}
@@ -37,7 +37,7 @@ public class BaseApplication extends Application {
 	public static void init(Application application) {
 		instance = application;
 		if (instance == null) {
-			Log.e(TAG, "\n\n\n\n\n !!!!!! 调用BaseApplication中的init方法，instance不能为null !!!" +
+			ZbLog.e(TAG, "\n\n\n\n\n !!!!!! 调用BaseApplication中的init方法，instance不能为null !!!" +
 					"\n <<<<<< init  instance == null ！！！ >>>>>>>> \n\n\n\n");
 		}
 		

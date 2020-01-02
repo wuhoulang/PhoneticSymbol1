@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import zuo.biao.library.R;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**基础底部弹出界面Activity
  * @author Lemon
@@ -130,7 +130,7 @@ public abstract class BaseBottomWindow extends BaseActivity {
 	 */
 	@Override
 	public void finish() {
-		Log.d(TAG, "finish >>> isExit = " + isExit);
+		ZbLog.d(TAG, "finish >>> isExit = " + isExit);
 		if (isExit) {
 			return;
 		}

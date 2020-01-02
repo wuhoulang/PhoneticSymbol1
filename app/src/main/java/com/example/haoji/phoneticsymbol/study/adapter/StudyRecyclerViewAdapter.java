@@ -32,7 +32,7 @@ import com.youth.banner.Transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 import static com.youth.banner.BannerConfig.CIRCLE_INDICATOR;
 
@@ -170,7 +170,7 @@ public class StudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
             gv_study.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.e("GridViewStudyAdapter","----position: "+position);
+                    ZbLog.e("GridViewStudyAdapter","----position: "+position);
                     Intent intent =new Intent(context, MatingActivity.class);
                     context.startActivity(intent);
                 }

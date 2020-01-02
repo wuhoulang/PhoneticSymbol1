@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -52,15 +52,15 @@ public class ThreadManager {
 	 */
 	public Handler runThread(String name, Runnable runnable) {
 		if (StringUtil.isNotEmpty(name, true) == false || runnable == null) {
-			Log.e(TAG, "runThread  StringUtil.isNotEmpty(name, true) == false || runnable == null >> return");
+			ZbLog.e(TAG, "runThread  StringUtil.isNotEmpty(name, true) == false || runnable == null >> return");
 			return null;
 		}
 		name = StringUtil.getTrimedString(name);
-		Log.d(TAG, "\n runThread  name = " + name);
+		ZbLog.d(TAG, "\n runThread  name = " + name);
 
 		Handler handler = getHandler(name);
 		if (handler != null) {
-			Log.w(TAG, "handler != null >>  destroyThread(name);");
+			ZbLog.w(TAG, "handler != null >>  destroyThread(name);");
 			destroyThread(name);
 		}
 
@@ -71,7 +71,7 @@ public class ThreadManager {
 
 		threadMap.put(name, new ThreadBean(name, thread, runnable, handler));
 
-		Log.d(TAG, "runThread  added name = " + name + "; threadMap.size() = " + threadMap.size() + "\n");
+		ZbLog.d(TAG, "runThread  added name = " + name + "; threadMap.size() = " + threadMap.size() + "\n");
 		return handler;
 	}
 
@@ -117,7 +117,7 @@ public class ThreadManager {
 	 */
 	private void destroyThread(ThreadBean tb) {
 		if (tb == null) {
-			Log.e(TAG, "destroyThread  tb == null >> return;");
+			ZbLog.e(TAG, "destroyThread  tb == null >> return;");
 			return;
 		}
 
@@ -133,14 +133,14 @@ public class ThreadManager {
 	 */
 	public void destroyThread(Handler handler, Runnable runnable) {
 		if (handler == null || runnable == null) {
-			Log.e(TAG, "destroyThread  handler == null || runnable == null >> return;");
+			ZbLog.e(TAG, "destroyThread  handler == null || runnable == null >> return;");
 			return;
 		}
 
 		try {
 			handler.removeCallbacks(runnable);
 		} catch (Exception e) {
-			Log.e(TAG, "onDestroy try { handler.removeCallbacks(runnable);...  >> catch  : " + e.getMessage());
+			ZbLog.e(TAG, "onDestroy try { handler.removeCallbacks(runnable);...  >> catch  : " + e.getMessage());
 		}
 	}
 
@@ -149,7 +149,7 @@ public class ThreadManager {
 	 */
 	public void finish() {
 		if (threadMap == null || threadMap.keySet() == null) {
-			Log.d(TAG, "finish  threadMap == null || threadMap.keySet() == null >> threadMap = null; >> return;");
+			ZbLog.d(TAG, "finish  threadMap == null || threadMap.keySet() == null >> threadMap = null; >> return;");
 			threadMap = null;
 			return;
 		}
@@ -160,7 +160,7 @@ public class ThreadManager {
 			}
 		}
 		threadMap = null;
-		Log.d(TAG, "\n finish  finished \n");
+		ZbLog.d(TAG, "\n finish  finished \n");
 	}
 
 

@@ -40,7 +40,7 @@ import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.model.Parameter;
 import zuo.biao.library.util.JSON;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.SSLUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -63,7 +63,7 @@ public class HttpManager {
 			//TODO 初始化自签名，demo.cer（这里demo.cer是空文件）为服务器生成的自签名证书，存放于assets目录下，如果不需要自签名可删除
 			socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open("demo.cer"));
 		} catch (Exception e) {
-			Log.e(TAG, "HttpManager  try {" +
+			ZbLog.e(TAG, "HttpManager  try {" +
 					"  socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open(\"demo.cer\"));\n" +
 					"\t\t} catch (Exception e) {\n" + e.getMessage());
 		}
@@ -130,7 +130,7 @@ public class HttpManager {
 					);
 					//仅供测试 result = "{\"code\":100,\"data\":{\"id\":1,\"name\":\"TestName\",\"phone\":\"1234567890\"}}";
 				} catch (Exception e) {
-					Log.e(TAG, "get  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
+					ZbLog.e(TAG, "get  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
 							"} catch (Exception e) {\n" + e.getMessage());
 					return e;
 				}
@@ -216,7 +216,7 @@ public class HttpManager {
 					RequestBody requestBody;
 					if (isJson) {
 						String body = JSON.toJSONString(request);
-						Log.d(TAG, "\n\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n post  url = " + url + "\n request = \n" + body);
+						ZbLog.d(TAG, "\n\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n post  url = " + url + "\n request = \n" + body);
 						requestBody = RequestBody.create(TYPE_JSON, body);
 					}
 					else {
@@ -238,9 +238,9 @@ public class HttpManager {
 									.post(requestBody)
 									.build()
 					);
-					Log.d(TAG, "\n post  result = \n" + result + "\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
+					ZbLog.d(TAG, "\n post  result = \n" + result + "\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 				} catch (Exception e) {
-					Log.e(TAG, "post  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
+					ZbLog.e(TAG, "post  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
 							"} catch (Exception e) {\n" + e.getMessage());
 					return e;
 				}
@@ -289,9 +289,9 @@ public class HttpManager {
 	 * @return
 	 */
 	private OkHttpClient getHttpClient(String url) {
-		Log.i(TAG, "getHttpClient  url = " + url);
+		ZbLog.i(TAG, "getHttpClient  url = " + url);
 		if (StringUtil.isEmpty(url)) {
-			Log.e(TAG, "getHttpClient  StringUtil.isEmpty(url) >> return null;");
+			ZbLog.e(TAG, "getHttpClient  StringUtil.isEmpty(url) >> return null;");
 			return null;
 		}
 
@@ -350,7 +350,7 @@ public class HttpManager {
 	 */
 	public String getCookie(String host) {
 		if (host == null) {
-			Log.e(TAG, "getCookie  host == null >> return \"\"");
+			ZbLog.e(TAG, "getCookie  host == null >> return \"\"");
 			return "";
 		}
 		return context.getSharedPreferences(KEY_COOKIE, Context.MODE_PRIVATE).getString(host, "");
@@ -361,7 +361,7 @@ public class HttpManager {
 	 */
 	public void saveCookie(String host, String value) {
 		if (host == null) {
-			Log.e(TAG, "saveCookie  host == null >> return;");
+			ZbLog.e(TAG, "saveCookie  host == null >> return;");
 			return;
 		}
 		context.getSharedPreferences(KEY_COOKIE, Context.MODE_PRIVATE)
@@ -380,7 +380,7 @@ public class HttpManager {
 	 */
 	private String getResponseJson(OkHttpClient client, Request request) throws Exception {
 		if (client == null || request == null) {
-			Log.e(TAG, "getResponseJson  client == null || request == null >> return null;");
+			ZbLog.e(TAG, "getResponseJson  client == null || request == null >> return null;");
 			return null;
 		}
 		Response response = client.newCall(request).execute();

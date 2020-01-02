@@ -195,32 +195,24 @@ public class SpeakActivity extends FragmentActivity implements View.OnClickListe
                         control_imagefragment = 1;
                     }
 
-                    try {
-                        while (count < 25) {
-                            count = count + 1;
-                            min = min + length;
-                            Log.e("SpeakActivity", "count:" + count);
-                            publishProgress(String.valueOf(min));
-                            Thread.sleep(5);
-                        }
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    while (count < 25) {
+                        count = count + 1;
+                        min = min + length;
+                        Log.e("SpeakActivity", "count:" + count);
+                        publishProgress(String.valueOf(min));
+//                            Thread.sleep(1);
                     }
+
                 } else {
                     if (min != 25) {
                             control_imagefragment = control_imagefragment - 2;
                         Log.e("SpeakActivity", "control_imagefragment:" + control_imagefragment);
-                        try {
-                            while (count < 25) {
-                                count = count + 1;
-                                min = min - length;
-                                Log.e("SpeakActivity", "count:" + count);
-                                publishProgress(String.valueOf(min));
-                                Thread.sleep(5);
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        while (count < 25) {
+                            count = count + 1;
+                            min = min - length;
+                            Log.e("SpeakActivity", "count:" + count);
+                            publishProgress(String.valueOf(min));
+//                                Thread.sleep(1);
                         }
 
                     }

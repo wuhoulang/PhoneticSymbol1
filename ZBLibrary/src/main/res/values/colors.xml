@@ -60,5 +60,5 @@
     <color name="btn_gray_pressed">#666667</color>
     <color name="btn_red_normal">#ff3b3b</color>
     <color name="btn_red_pressed">#dd0000</color>
-
+    <color name="light_grey">#ccced0</color>
 </resources>

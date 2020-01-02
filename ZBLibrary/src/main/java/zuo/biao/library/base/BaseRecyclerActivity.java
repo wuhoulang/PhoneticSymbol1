@@ -32,7 +32,7 @@ import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.interfaces.CacheCallBack;
 import zuo.biao.library.interfaces.OnStopLoadListener;
 import zuo.biao.library.manager.CacheManager;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -183,7 +183,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 	 */
 	private void loadData(int page_, final boolean isCache) {
 		if (isLoading) {
-			Log.w(TAG, "loadData  isLoading >> return;");
+			ZbLog.w(TAG, "loadData  isLoading >> return;");
 			return;
 		}
 		isLoading = true;
@@ -201,7 +201,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 			loadCacheStart = list == null ? 0 : list.size();
 		}
 		this.page = page_;
-		Log.i(TAG, "loadData  page_ = " + page_ + "; isCache = " + isCache
+		ZbLog.i(TAG, "loadData  page_ = " + page_ + "; isCache = " + isCache
 				+ "; isHaveMore = " + isHaveMore + "; loadCacheStart = " + loadCacheStart);
 
 		runThread(TAG + "loadData", new Runnable() {
@@ -235,17 +235,17 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 	 * @param isCache
 	 */
 	private synchronized void stopLoadData(int page, boolean isCache) {
-		Log.i(TAG, "stopLoadData  isCache = " + isCache);
+		ZbLog.i(TAG, "stopLoadData  isCache = " + isCache);
 		isLoading = false;
 		dismissProgressDialog();
 
 		if (isCache) {
-			Log.d(TAG, "stopLoadData  isCache >> return;");
+			ZbLog.d(TAG, "stopLoadData  isCache >> return;");
 			return;
 		}
 
 		if (onStopLoadListener == null) {
-			Log.w(TAG, "stopLoadData  onStopLoadListener == null >> return;");
+			ZbLog.w(TAG, "stopLoadData  onStopLoadListener == null >> return;");
 			return;
 		}
 		onStopLoadListener.onStopRefresh();
@@ -269,19 +269,19 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 			newList = new ArrayList<T>();
 		}
 		isSucceed = ! newList.isEmpty();
-		Log.i(TAG, "\n\n<<<<<<<<<<<<<<<<<\n handleList  newList.size = " + newList.size() + "; isCache = " + isCache
+		ZbLog.i(TAG, "\n\n<<<<<<<<<<<<<<<<<\n handleList  newList.size = " + newList.size() + "; isCache = " + isCache
 				+ "; page = " + page + "; isSucceed = " + isSucceed);
 
 		if (page <= PAGE_NUM_0) {
-			Log.i(TAG, "handleList  page <= PAGE_NUM_0 >>>>  ");
+			ZbLog.i(TAG, "handleList  page <= PAGE_NUM_0 >>>>  ");
 			saveCacheStart = 0;
 			list = new ArrayList<T>(newList);
 			if (isCache == false && list.isEmpty() == false) {
-				Log.i(TAG, "handleList  isCache == false && list.isEmpty() == false >>  isToLoadCache = false;");
+				ZbLog.i(TAG, "handleList  isCache == false && list.isEmpty() == false >>  isToLoadCache = false;");
 				isToLoadCache = false;
 			}
 		} else {
-			Log.i(TAG, "handleList  page > PAGE_NUM_0 >>>>  ");
+			ZbLog.i(TAG, "handleList  page > PAGE_NUM_0 >>>>  ");
 			if (list == null) {
 				list = new ArrayList<T>();
 			}
@@ -292,7 +292,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 			}
 		}
 
-		Log.i(TAG, "handleList  list.size = " + list.size() + "; isHaveMore = " + isHaveMore
+		ZbLog.i(TAG, "handleList  list.size = " + list.size() + "; isHaveMore = " + isHaveMore
 				+ "; isToLoadCache = " + isToLoadCache + "; saveCacheStart = " + saveCacheStart
 				+ "\n>>>>>>>>>>>>>>>>>>\n\n");
 	}
@@ -316,7 +316,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 		runThread(TAG + "onLoadSucceed", new Runnable() {
 			@Override
 			public void run() {
-				Log.i(TAG, "onLoadSucceed  page = " + page + "; isCache = " + isCache + " >> handleList...");
+				ZbLog.i(TAG, "onLoadSucceed  page = " + page + "; isCache = " + isCache + " >> handleList...");
 				handleList(page, newList, isCache);
 
 				runUiThread(new Runnable() {
@@ -340,7 +340,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 	 * @param e
 	 */
 	public synchronized void onLoadFailed(int page, Exception e) {
-		Log.e(TAG, "onLoadFailed page = " + page + "; e = " + (e == null ? null : e.getMessage()));
+		ZbLog.e(TAG, "onLoadFailed page = " + page + "; e = " + (e == null ? null : e.getMessage()));
 		stopLoadData(page);
 		showShortToast(R.string.get_failed);
 	}
@@ -364,7 +364,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 	 */
 	public synchronized void saveCache(List<T> newList) {
 		if (cacheCallBack == null || newList == null || newList.isEmpty()) {
-			Log.e(TAG, "saveCache  cacheCallBack == null || newList == null || newList.isEmpty() >> return;");
+			ZbLog.e(TAG, "saveCache  cacheCallBack == null || newList == null || newList.isEmpty() >> return;");
 			return;
 		}
 
@@ -429,7 +429,7 @@ public abstract class BaseRecyclerActivity<T, VH extends ViewHolder, A extends A
 	 */
 	public void onLoadMore() {
 		if (isSucceed == false && page <= PAGE_NUM_0) {
-			Log.w(TAG, "onLoadMore  isSucceed == false && page <= PAGE_NUM_0 >> return;");
+			ZbLog.w(TAG, "onLoadMore  isSucceed == false && page <= PAGE_NUM_0 >> return;");
 			return;
 		}
 		loadData(page + (isSucceed ? 1 : 0));

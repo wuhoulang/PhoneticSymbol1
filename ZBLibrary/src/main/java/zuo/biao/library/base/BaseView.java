@@ -26,7 +26,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import zuo.biao.library.util.CommonUtil;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 
 /**基础自定义View，适合任何View
@@ -205,7 +205,7 @@ public abstract class BaseView<T> extends RecyclerView.ViewHolder {
 	 */
 	public void bindView(T data_) {
 		if (data_ == null) {
-			Log.w(TAG, "bindView data_ == null");
+			ZbLog.w(TAG, "bindView data_ == null");
 		}
 		this.data = data_;
 
@@ -329,7 +329,7 @@ public abstract class BaseView<T> extends RecyclerView.ViewHolder {
 			try {
 				itemView.destroyDrawingCache();
 			} catch (Exception e) {
-				Log.w(TAG, "onDestroy  try { itemView.destroyDrawingCache();" +
+				ZbLog.w(TAG, "onDestroy  try { itemView.destroyDrawingCache();" +
 						" >> } catch (Exception e) {\n" + e.getMessage());
 			}
 		}

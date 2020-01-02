@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.base.BaseFragment;
@@ -20,13 +21,15 @@ import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
 import java.util.ArrayList;
 import java.util.List;
 
+import zuo.biao.library.util.ZbLog;
+
 /**
  * Created by HAOJI on 2019/8/22.
  */
 @SuppressLint("ValidFragment")
 public class HomeFragment extends BaseFragment implements ProgreesView {
     private static Context context;
-//    private Context context;
+    //    private Context context;
     private RecyclerView id_rlv;
     private LinearLayoutManager manager;
     private RecyclerViewAdapter rva;
@@ -61,7 +64,6 @@ public class HomeFragment extends BaseFragment implements ProgreesView {
     private List<DataBean1.LineFourteenBean.ContentBeanXXXXXXXXXXXXX.PageDataBeanXXXXXXXXXXXXX> page_data14;
 
 
-
     public HomeFragment() {
     }
 
@@ -78,7 +80,7 @@ public class HomeFragment extends BaseFragment implements ProgreesView {
         manager = new LinearLayoutManager(context);
         id_rlv.setLayoutManager(manager);
         list_data = new ArrayList<>();
-         biaoUser =new HomePresenter(this);
+        biaoUser = new HomePresenter(this);
         return view;
     }
 
@@ -86,7 +88,7 @@ public class HomeFragment extends BaseFragment implements ProgreesView {
     public void initData() {
         getRetrofit();
     }
-    
+
     private void getRetrofit() {
         biaoUser.getRetrofitBean(context, ContentsJson.BASE_ONE_JSON_DAN_ONE1, new SuccessCallBack() {
             @Override
@@ -122,18 +124,6 @@ public class HomeFragment extends BaseFragment implements ProgreesView {
 
     }
 
-
-    
-
-//    public void lazyinit(View view, Bundle saveInstanceState) {
-//        Log.e("FiveFragment", "-----:");
-//    }
-//
-//
-//    public int getLayoutId() {
-//        return R.layout.one;
-//    }
-
     @Override
     public void showLoading() {
 
@@ -143,4 +133,11 @@ public class HomeFragment extends BaseFragment implements ProgreesView {
     public void hideLoading() {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ZbLog.e("HomeFragment", "---ondestory----");
+    }
+
 }

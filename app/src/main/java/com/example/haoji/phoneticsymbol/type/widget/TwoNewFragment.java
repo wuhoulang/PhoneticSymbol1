@@ -18,6 +18,8 @@ import com.example.haoji.phoneticsymbol.type.adapter.TypeGridViewAdapterFour;
 import com.example.haoji.phoneticsymbol.type.adapter.TypeGridViewAdapterThree;
 import com.example.haoji.phoneticsymbol.type.adapter.TypeGridViewAdapterTwo;
 
+import zuo.biao.library.util.ZbLog;
+
 /**
  * Created by HAOJI on 2019/12/9.
  */
@@ -135,5 +137,9 @@ public class TwoNewFragment extends BaseFragment {
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ZbLog.e("TwoNewFragment","----ondestroy-------");
+    }
 }

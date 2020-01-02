@@ -15,7 +15,7 @@ import com.example.haoji.phoneticsymbol.myContents.ContentsJson;
 
 import java.util.HashMap;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**
  * Created by HAOJI on 2019/12/14.
@@ -54,7 +54,7 @@ public class PracticeWordsTwoFragment extends BaseFragment {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 iv_practice.setVisibility(View.VISIBLE);
-                Log.e("PracticeWordsFragment","--onCompletion----");
+                ZbLog.e("PracticeWordsFragment","--onCompletion----");
             }
         });
         iv_practice.setOnClickListener((View.OnClickListener) context);

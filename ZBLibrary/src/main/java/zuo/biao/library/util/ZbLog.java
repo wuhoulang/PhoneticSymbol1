@@ -17,7 +17,7 @@ package zuo.biao.library.util;
 /**测试用Log,不要使用android.util.Log
  * @modifier Lemon
  */
-public class Log {
+public class ZbLog {
 
 	/**
 	 * @param TAG

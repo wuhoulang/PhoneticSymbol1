@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Response;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**
  * Created by HAOJI on 2019/12/11.
@@ -69,7 +69,7 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
                 typePresenter.getPostBean(context, "http://192.168.0.44:9093/collect", "http://dsfdsfdsf", userId, "的方式fsafs收到", "胜多负少的", new SuccessCallBack() {
                     @Override
                     public void IsSuccess(String data) {
-                        Log.e("ShowDetailActivity","--data:"+data.toString());
+                        ZbLog.e("ShowDetailActivity","--data:"+data.toString());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -89,7 +89,7 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
 
                     }
                 });
-                Log.e("ShowDetailActivity","--id_add_study---click-");
+                ZbLog.e("ShowDetailActivity","--id_add_study---click-");
                 break;
             case R.id.click_to:
                 clearlyMove2Position(11);
@@ -99,7 +99,7 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
                         view_hover.scrollTo(0, headBarLayout.getTop());
                     }
                 });
-                Log.e("ShowDetailActivity","--click_to---click-");
+                ZbLog.e("ShowDetailActivity","--click_to---click-");
                 break;
             default:
                 break;

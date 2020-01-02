@@ -11,6 +11,8 @@ import com.example.haoji.phoneticsymbol.base.BaseFragment;
 import com.example.haoji.phoneticsymbol.home.widget.HomeFragment;
 import com.example.haoji.phoneticsymbol.study.adapter.StudyRecyclerViewAdapter;
 
+import zuo.biao.library.util.ZbLog;
+
 /**
  * Created by HAOJI on 2019/12/12.
  */
@@ -47,4 +49,9 @@ public class StudyFragment extends BaseFragment {
         rv_study.setAdapter(srv);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ZbLog.e("StudyFragment","----ondestroy-------");
+    }
 }

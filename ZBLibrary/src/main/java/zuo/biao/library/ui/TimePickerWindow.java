@@ -30,7 +30,7 @@ import zuo.biao.library.base.BaseViewBottomWindow;
 import zuo.biao.library.model.Entry;
 import zuo.biao.library.model.GridPickerConfig;
 import zuo.biao.library.ui.GridPickerView.OnTabClickListener;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 import zuo.biao.library.util.TimeUtil;
 
@@ -178,7 +178,7 @@ public class TimePickerWindow extends BaseViewBottomWindow<List<Entry<Integer, S
 		//		minTime = getIntent().getLongExtra(INTENT_MIN_TIME, 0);
 		//		maxTime = getIntent().getLongExtra(INTENT_MAX_TIME, 0);
 		//		if (minTime >= maxTime) {
-		//			Log.e(TAG, "initData minTime >= maxTime >> finish(); return; ");
+		//			ZbLog.e(TAG, "initData minTime >= maxTime >> finish(); return; ");
 		//			finish();
 		//			return;
 		//		}
@@ -247,7 +247,7 @@ public class TimePickerWindow extends BaseViewBottomWindow<List<Entry<Integer, S
 		int level = TimeUtil.LEVEL_HOUR + tabPosition;
 		if (selectedItemList == null || selectedItemList.size() < MIN_LENGHT
 				|| TimeUtil.isContainLevel(level) == false) {
-			Log.e(TAG, "getList  (selectedItemList == null || selectedItemList.size() < MIN_LENGHT" +
+			ZbLog.e(TAG, "getList  (selectedItemList == null || selectedItemList.size() < MIN_LENGHT" +
 					" || TimeUtil.isContainLevel(level) == false >> return null;");
 			return null;
 		}

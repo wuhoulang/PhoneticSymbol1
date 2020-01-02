@@ -13,7 +13,7 @@ import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
 import com.example.haoji.phoneticsymbol.home.presenter.HomePresenter;
 
 import retrofit2.Response;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**
  * Created by HAOJI on 2019/12/14.
@@ -50,7 +50,7 @@ public class PracticeWordsThreeFragment extends BaseFragment {
         String[] split = pic.split("\\,",-1);
         for (int i = 0; i < split.length; i++) {
             String s = split[i];
-            Log.e("PracticeWordsThreeFragment","split:"+s);
+            ZbLog.e("PracticeWordsThreeFragment","split:"+s);
         }
 
         LinearLayout linearLayoutOne= view.findViewById(R.id.practice_in_one);

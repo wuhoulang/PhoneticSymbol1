@@ -66,7 +66,7 @@ public class DataKeeper {
 	public static void init(Context context_) {
 		context = context_;
 		
-		Log.i(TAG, "init fileRootPath = " + fileRootPath);
+		ZbLog.i(TAG, "init fileRootPath = " + fileRootPath);
 		
 		//判断SD卡存在
 		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
@@ -127,7 +127,7 @@ public class DataKeeper {
 			in.read(data, 0, data.length);
 			in.close();
 		} catch (IOException e) {
-			Log.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
+			ZbLog.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
 					" } catch (IOException e) {\n" + e.getMessage());
 		}
 		return storeFile(data, suffix, type);
@@ -157,11 +157,11 @@ public class DataKeeper {
 			out.write(data, 0, data.length);
 			out.close();
 		} catch (FileNotFoundException e) {
-			Log.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
+			ZbLog.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
 					" } catch (FileNotFoundException e) {\n" + e.getMessage() + "\n\n >> path = null;");
 			path = null;
 		} catch (IOException e) {
-			Log.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
+			ZbLog.e(TAG, "storeFile  try { FileInputStream in = new FileInputStream(file); ... >>" +
 					" } catch (IOException e) {\n" + e.getMessage() + "\n\n >> path = null;");
 			path = null;
 		}
@@ -256,7 +256,7 @@ public class DataKeeper {
 	 */
 	public static void save(SharedPreferences sdf, String key, String value) {
 		if (sdf == null || StringUtil.isNotEmpty(key, false) == false || StringUtil.isNotEmpty(value, false) == false) {
-			Log.e(TAG, "save sdf == null || \n key = " + key + ";\n value = " + value + "\n >> return;");
+			ZbLog.e(TAG, "save sdf == null || \n key = " + key + ";\n value = " + value + "\n >> return;");
 			return;
 		}
 		sdf.edit().remove(key).putString(key, value).commit();		

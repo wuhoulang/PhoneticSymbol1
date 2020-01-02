@@ -30,7 +30,7 @@ public class JSON {
 	 * @return
 	 */
 	public static boolean isJsonCorrect(String s) {
-//		Log.i(TAG, "isJsonCorrect  <<<<     " + s + "     >>>>>>>");
+//		ZbLog.i(TAG, "isJsonCorrect  <<<<     " + s + "     >>>>>>>");
 		if (s == null || s.equals("[]") 
 				|| s.equals("{}") || s.equals("") || s.equals("[null]") || s.equals("{null}") || s.equals("null")) {
 			return false;
@@ -61,7 +61,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.parseObject(getCorrectJson(json));
 		} catch (Exception e) {
-			Log.e(TAG, "parseObject  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "parseObject  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -83,7 +83,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.parseObject(getCorrectJson(json), clazz);
 		} catch (Exception e) {
-			Log.e(TAG, "parseObject  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "parseObject  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -99,7 +99,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.toJSONString(obj);
 		} catch (Exception e) {
-			Log.e(TAG, "toJSONString  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "toJSONString  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -112,7 +112,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.parseArray(getCorrectJson(json));
 		} catch (Exception e) {
-			Log.e(TAG, "parseArray  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "parseArray  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -125,7 +125,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.parseArray(getCorrectJson(json), clazz);
 		} catch (Exception e) {
-			Log.e(TAG, "parseArray  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "parseArray  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -138,7 +138,7 @@ public class JSON {
 		try {
 			return com.alibaba.fastjson.JSON.toJSONString(object, true);
 		} catch (Exception e) {
-			Log.e(TAG, "format  catch \n" + e.getMessage());
+			ZbLog.e(TAG, "format  catch \n" + e.getMessage());
 		}
 		return null;
 	}
@@ -156,7 +156,7 @@ public class JSON {
 				JSONObject json = parseObject((String) obj);
 				return json != null && json.isEmpty() == false;
 			} catch (Exception e) {
-				Log.e(TAG, "isJSONObject  catch \n" + e.getMessage());
+				ZbLog.e(TAG, "isJSONObject  catch \n" + e.getMessage());
 			}
 		}
 		
@@ -175,7 +175,7 @@ public class JSON {
 				JSONArray json = parseArray((String) obj);
 				return json != null && json.isEmpty() == false;
 			} catch (Exception e) {
-				Log.e(TAG, "isJSONArray  catch \n" + e.getMessage());
+				ZbLog.e(TAG, "isJSONArray  catch \n" + e.getMessage());
 			}
 		}
 		

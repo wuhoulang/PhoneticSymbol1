@@ -21,7 +21,7 @@ import java.util.List;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.util.DataKeeper;
 import zuo.biao.library.util.JSON;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -130,9 +130,9 @@ public class CacheManager {
 	 * @return
 	 */
 	public <T> List<T> getList(Class<T> clazz, String group, int start, int count) {
-		Log.i(TAG, "\n\n<<<<<<<<<<<<<<<<\ngetList  group = " + group +"; start = " + start + "; count = " + count);
+		ZbLog.i(TAG, "\n\n<<<<<<<<<<<<<<<<\ngetList  group = " + group +"; start = " + start + "; count = " + count);
 		if (count <= 0 || clazz == null) {
-			Log.e(TAG, "getList  count <= 0 || clazz == null >> return null;");
+			ZbLog.e(TAG, "getList  count <= 0 || clazz == null >> return null;");
 			return null;
 		}
 		Cache<T> cacheList = new Cache<T>(clazz, context, getClassPath(clazz) + KEY_LIST);
@@ -143,27 +143,27 @@ public class CacheManager {
 
 		List<String> idList = getIdList(clazz, group);
 		final int totalCount = idList == null ? 0 : idList.size();
-		Log.i(TAG, "getList  idList.size() = " + totalCount);
+		ZbLog.i(TAG, "getList  idList.size() = " + totalCount);
 		if (totalCount <= 0) {
-			Log.e(TAG, "getList  totalCount <= 0 >> return null;");
+			ZbLog.e(TAG, "getList  totalCount <= 0 >> return null;");
 			return null;
 		}
 
 		if (start >= 0) {
-			Log.i(TAG, "getList  start >= 0 >> ");
+			ZbLog.i(TAG, "getList  start >= 0 >> ");
 
 			int end = start + count;
 			if (end > totalCount) {
 				end = totalCount;
 			}
-			Log.i(TAG, "getList  end = " + end);
+			ZbLog.i(TAG, "getList  end = " + end);
 			if (end <= start) {
-				Log.e(TAG, "getList  end <= start >> return null;");
+				ZbLog.e(TAG, "getList  end <= start >> return null;");
 				return null;
 			}
 
 			if (start > 0 || end < totalCount) {
-				Log.i(TAG, "getList  start > 0 || end < totalCount  >> idList = idList.subList(" + start + "," + end + "); >>");
+				ZbLog.i(TAG, "getList  start > 0 || end < totalCount  >> idList = idList.subList(" + start + "," + end + "); >>");
 				idList = idList.subList(start, end);
 			}
 		}
@@ -177,7 +177,7 @@ public class CacheManager {
 			}
 		}
 
-		Log.i(TAG, "getList  return list; list.size() = " + list.size() + "\n>>>>>>>>>>>>>>>>>>>>>>\n\n");
+		ZbLog.i(TAG, "getList  return list; list.size() = " + list.size() + "\n>>>>>>>>>>>>>>>>>>>>>>\n\n");
 
 		return list;
 	}
@@ -229,7 +229,7 @@ public class CacheManager {
 	 */
 	public <T> void addList(Class<T> clazz, String group, LinkedHashMap<String, T> map, int pageSize) {
 		if (StringUtil.isNotEmpty(group, true) == false) {
-			Log.e(TAG, "addList  StringUtil.isNotEmpty(group, true) == false >> return;");
+			ZbLog.e(TAG, "addList  StringUtil.isNotEmpty(group, true) == false >> return;");
 			return;
 		}
 		saveList(clazz, group, map, -1, pageSize);
@@ -242,9 +242,9 @@ public class CacheManager {
 	 * @param pageSize 每页大小
 	 */
 	public <T> void saveList(Class<T> clazz, String group, LinkedHashMap<String, T> map, int start, int pageSize) {
-		Log.i(TAG, "\n\n <<<<<<<<<<<<<<<<<\nsaveList  group = " + group + "; start = " + start + "; pageSize = " + pageSize);
+		ZbLog.i(TAG, "\n\n <<<<<<<<<<<<<<<<<\nsaveList  group = " + group + "; start = " + start + "; pageSize = " + pageSize);
 		if (clazz == null || map == null || map.size() <= 0) {
-			Log.e(TAG, "saveList  clazz == null || map == null || map.size() <= 0 >> return;");
+			ZbLog.e(TAG, "saveList  clazz == null || map == null || map.size() <= 0 >> return;");
 			return;
 		}
 		final String CLASS_PATH = getClassPath(clazz);
@@ -252,11 +252,11 @@ public class CacheManager {
 		if (StringUtil.isNotEmpty(group, true)) {
 			group = StringUtil.getTrimedString(group);
 
-			Log.i(TAG, "saveList  group = " + group + "; map.size() = " + map.size()
+			ZbLog.i(TAG, "saveList  group = " + group + "; map.size() = " + map.size()
 					+ "; start = " + start +"; pageSize = " + pageSize);
 			List<String> newIdList = new ArrayList<String>(map.keySet());//用String而不是Long，因为订单Order的id超出Long的最大值
 
-			Log.i(TAG, "saveList newIdList.size() = " + newIdList.size() + "; start save <<<<<<<<<<<<<<<<<\n ");
+			ZbLog.i(TAG, "saveList newIdList.size() = " + newIdList.size() + "; start save <<<<<<<<<<<<<<<<<\n ");
 
 
 			//保存至分组<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -264,14 +264,14 @@ public class CacheManager {
 			//			sp.edit().putString(KEY_GROUP, group);
 			Editor editor = sp.edit();
 
-			Log.i(TAG, "\n saveList pageSize = " + pageSize + " <<<<<<<<");
+			ZbLog.i(TAG, "\n saveList pageSize = " + pageSize + " <<<<<<<<");
 			//列表每页大小
 			if (pageSize > 0) {
 				if (pageSize > MAX_PAGE_SIZE) {
 					pageSize = MAX_PAGE_SIZE;
 				}
 			}
-			Log.i(TAG, "\n saveList pageSize = " + pageSize + ">>>>>>>>>");
+			ZbLog.i(TAG, "\n saveList pageSize = " + pageSize + ">>>>>>>>>");
 
 			//id列表
 			List<String> idList = JSON.parseArray(sp.getString(group, null), String.class);
@@ -281,7 +281,7 @@ public class CacheManager {
 			if (start < 0) {
 				start = idList.size();
 			}
-			Log.i(TAG, "\n saveList idList.size() = " + idList.size() + " <<<<<<<<");
+			ZbLog.i(TAG, "\n saveList idList.size() = " + idList.size() + " <<<<<<<<");
 			String id;
 			for (int i = start; i < start + newIdList.size(); i++) {
 				id = newIdList.get(i - start);
@@ -299,7 +299,7 @@ public class CacheManager {
 			}
 			editor.remove(group).putString(group, JSON.toJSONString(idList)).commit();
 
-			Log.i(TAG, "\n saveList idList.size() = " + idList.size() + " >>>>>>>>");
+			ZbLog.i(TAG, "\n saveList idList.size() = " + idList.size() + " >>>>>>>>");
 		}
 
 		//保存至分组>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -311,7 +311,7 @@ public class CacheManager {
 		cache.saveList(map);
 		//保存所有数据>>>>>>>>>>>>>>>>>>>>>>>>>
 
-		Log.i(TAG, "saveList cache.getSize() = " + cache.getSize() + "; end save \n>>>>>>>>>>>>>>>>>> \n\n");
+		ZbLog.i(TAG, "saveList cache.getSize() = " + cache.getSize() + "; end save \n>>>>>>>>>>>>>>>>>> \n\n");
 		//		}
 
 	}
@@ -334,7 +334,7 @@ public class CacheManager {
 	 */
 	public <T> void save(Class<T> clazz, T data, String id, String group) {
 		if (data == null || StringUtil.isNotEmpty(id, true) == false) {
-			Log.e(id, "save  data == null || StringUtil.isNotEmpty(id, true) == false  >>  return;");
+			ZbLog.e(id, "save  data == null || StringUtil.isNotEmpty(id, true) == false  >>  return;");
 			return;
 		}
 
@@ -344,13 +344,13 @@ public class CacheManager {
 		if (sp != null) {
 			group = StringUtil.getTrimedString(group);
 
-			Log.i(TAG, "save sp != null >> save to group");
+			ZbLog.i(TAG, "save sp != null >> save to group");
 			List<String> idList = getIdList(clazz, group);
 			if (idList == null) {
 				idList = new ArrayList<String>();
 			}
 			if (idList.contains(id) == false) {
-				Log.i(TAG, "save idList.contains(id) == false >> add");
+				ZbLog.i(TAG, "save idList.contains(id) == false >> add");
 				idList.add(0, id);
 				sp.edit().remove(group).putString(group, JSON.toJSONString(idList)).commit();
 			}
@@ -379,7 +379,7 @@ public class CacheManager {
 	 * @param <T>
 	 */
 	public <T> void clear(Class<T> clazz, String group, boolean removeAllInGroup) {
-		Log.i(TAG, "clear  group = " + group + "; removeAllInGroup = " + removeAllInGroup);
+		ZbLog.i(TAG, "clear  group = " + group + "; removeAllInGroup = " + removeAllInGroup);
 		List<String> list = removeAllInGroup == false ? null : getIdList(clazz, group);
 		if (list != null) {
 			Cache<T> cache = new Cache<T>(clazz, context, getListPath(clazz));
@@ -394,7 +394,7 @@ public class CacheManager {
 	 */
 	public void clear(SharedPreferences sp) {
 		if (sp == null) {
-			Log.e(TAG, "clearList  sp == null >> return;");
+			ZbLog.e(TAG, "clearList  sp == null >> return;");
 			return;
 		}
 		sp.edit().clear().commit();
@@ -402,7 +402,7 @@ public class CacheManager {
 
 	public <T> void remove(Class<T> clazz, String id) {
 		if (clazz == null) {
-			Log.e(TAG, "remove  clazz == null >> return;");
+			ZbLog.e(TAG, "remove  clazz == null >> return;");
 			return;
 		}
 		new Cache<T>(clazz, context, getListPath(clazz)).remove(id);

@@ -17,7 +17,7 @@ package zuo.biao.library.base;
 import java.util.Arrays;
 import java.util.List;
 
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -56,7 +56,7 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
 	/**接收信息监听回调方法
 	 */
 	public void onReceive(Context context, Intent intent) {
-		Log.i(TAG, "onReceive intent = " + intent);
+		ZbLog.i(TAG, "onReceive intent = " + intent);
 		if (onReceiveListener != null) {
 			onReceiveListener.onReceive(context, intent);
 		}
@@ -116,9 +116,9 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
 	 * @return
 	 */
 	public static BroadcastReceiver register(Context context, @Nullable BroadcastReceiver receiver, IntentFilter filter) {
-		Log.i(TAG, "register >>>");
+		ZbLog.i(TAG, "register >>>");
 		if (context == null || filter == null) {
-			Log.e(TAG, "register  context == null || filter == null >> return;");
+			ZbLog.e(TAG, "register  context == null || filter == null >> return;");
 			return receiver;
 		}
 
@@ -135,16 +135,16 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
 	 * @return
 	 */
 	public static void unregister(Context context, BroadcastReceiver receiver) {
-		Log.i(TAG, "unregister >>>");
+		ZbLog.i(TAG, "unregister >>>");
 		if (context == null || receiver == null) {
-			Log.e(TAG, "unregister  context == null || receiver == null >> return;");
+			ZbLog.e(TAG, "unregister  context == null || receiver == null >> return;");
 			return;
 		}
 
 		try {
 			context.unregisterReceiver(receiver);
 		} catch (Exception e) {
-			Log.e(TAG, "unregister  try { context.unregisterReceiver(receiver);" +
+			ZbLog.e(TAG, "unregister  try { context.unregisterReceiver(receiver);" +
 					" } catch (Exception e) { \n" + e.getMessage());
 		}
 	}

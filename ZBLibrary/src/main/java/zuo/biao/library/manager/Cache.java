@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 import zuo.biao.library.util.JSON;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 import zuo.biao.library.util.StringUtil;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -59,7 +59,7 @@ public class Cache<T> {
 	 */
 	public void saveList(Map<String, T> map) {
 		if (map == null) {
-			Log.e(TAG, "saveList  map == null >> return;");
+			ZbLog.e(TAG, "saveList  map == null >> return;");
 			return;
 		}
 		Set<String> keySet = map.keySet();
@@ -76,7 +76,7 @@ public class Cache<T> {
 	 */
 	public void save(String key, T value) {
 		if (StringUtil.isNotEmpty(key, true) == false || value == null) {
-			Log.e(TAG, "save StringUtil.isNotEmpty(key, true) == false || value == null >> return;");
+			ZbLog.e(TAG, "save StringUtil.isNotEmpty(key, true) == false || value == null >> return;");
 			return;
 		}
 		key = StringUtil.getTrimedString(key);
@@ -90,7 +90,7 @@ public class Cache<T> {
 	 */
 	public boolean isContain(String key) {
 		if (StringUtil.isNotEmpty(key, true) == false) {
-			Log.e(TAG, "isContain StringUtil.isNotEmpty(key, true) == false >> return false;");
+			ZbLog.e(TAG, "isContain StringUtil.isNotEmpty(key, true) == false >> return false;");
 			return false;
 		}
 
@@ -103,7 +103,7 @@ public class Cache<T> {
 	 */
 	public T get(String key) {
 		if (StringUtil.isNotEmpty(key, true) == false) {
-			Log.e(TAG, "get (sp == null" +
+			ZbLog.e(TAG, "get (sp == null" +
 					" || StringUtil.isNotEmpty(key, true) == false >> return null; ");
 			return null;
 		}
@@ -121,7 +121,7 @@ public class Cache<T> {
 		try {
 			return (Map<String, String>) sp.getAll();
 		} catch (Exception e) {
-			Log.e(TAG, "getMap try { return (Map<String, String>) sp.getAll();" +
+			ZbLog.e(TAG, "getMap try { return (Map<String, String>) sp.getAll();" +
 					"}catch(Exception e) {\n " + e.getMessage());
 		}
 		return null;
@@ -190,7 +190,7 @@ public class Cache<T> {
 	 */
 	public void remove(String key) {
 		if (StringUtil.isNotEmpty(key, true) == false) {
-			Log.e(TAG, "deleteGroup  context == null " +
+			ZbLog.e(TAG, "deleteGroup  context == null " +
 					" || StringUtil.isNotEmpty(groupName, true) == fal >> return;");
 			return;
 		}

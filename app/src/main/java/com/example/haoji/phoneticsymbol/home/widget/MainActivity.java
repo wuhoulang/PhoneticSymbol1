@@ -1,6 +1,7 @@
 package com.example.haoji.phoneticsymbol.home.widget;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,13 @@ import com.example.haoji.phoneticsymbol.type.widget.TwoNewFragment;
 import com.example.haoji.phoneticsymbol.utils.PermissionsUtils;
 import com.example.haoji.phoneticsymbol.utils.ScreenAdapterUtil;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +66,7 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationViewHelper.disableShiftMode(rg_main);
         fragments = new ArrayList<>();
         HomeFragment one = HomeFragment.newInstance(context);
-        StudyFragment stu =StudyFragment.newInstance(context);
+        StudyFragment stu = StudyFragment.newInstance(context);
         ThreeFragment three = ThreeFragment.newInstance(context);
         TwoNewFragment two = TwoNewFragment.newInstance(context);
         fragments.add(one);
@@ -98,8 +106,25 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void base() {
+        String tag = null;
         BaseFragment baseFragment = getFragment(position);
-        switchFragment(mContext, baseFragment);
+        switch (position) {
+            case 0:
+                 tag = "one";
+                break;
+            case 1:
+                 tag = "two";
+                break;
+            case 2:
+                 tag = "three";
+                break;
+            case 3:
+                 tag = "four";
+                break;
+            default:
+                break;
+        }
+        switchFragment(mContext, baseFragment, tag);
     }
 
     @Override
@@ -116,7 +141,7 @@ public class MainActivity extends FragmentActivity {
         return null;
     }
 
-    private void switchFragment(Fragment fromFragment, BaseFragment nextFragment) {
+    private void switchFragment(Fragment fromFragment, BaseFragment nextFragment, String tag) {
         if (mContext != nextFragment) {
             mContext = nextFragment;
             if (nextFragment != null) {
@@ -128,7 +153,7 @@ public class MainActivity extends FragmentActivity {
                         transaction.hide(fromFragment);
                         Log.e("switchFragment", "----11--------");
                     }
-                    transaction.add(R.id.frameLayout, nextFragment).commit();
+                    transaction.add(R.id.frameLayout, nextFragment, tag).commit();
                     Log.e("switchFragment", "----2222222--------");
                 } else {
                     //隐藏当前Fragment

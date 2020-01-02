@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.KeyEvent;
@@ -47,7 +48,6 @@ import zuo.biao.library.interfaces.ActivityPresenter;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.manager.SystemBarTintManager;
 import zuo.biao.library.manager.ThreadManager;
-import zuo.biao.library.util.Log;
 import zuo.biao.library.util.ScreenUtil;
 import zuo.biao.library.util.StringUtil;
 

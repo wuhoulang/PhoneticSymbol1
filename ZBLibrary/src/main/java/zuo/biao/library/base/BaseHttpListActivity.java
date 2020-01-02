@@ -30,7 +30,7 @@ import zuo.biao.library.R;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.interfaces.OnLoadListener;
 import zuo.biao.library.interfaces.OnStopLoadListener;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 
 /**基础http网络列表的Activity
@@ -207,7 +207,7 @@ public abstract class BaseHttpListActivity<T, LV extends AbsListView, A extends 
 			public void run() {
 				int page = 0;
 				if (requestCode > 0) {
-					Log.w(TAG, "requestCode > 0, 应该用BaseListFragment#getListAsync(int page)中的page的负数作为requestCode!");
+					ZbLog.w(TAG, "requestCode > 0, 应该用BaseListFragment#getListAsync(int page)中的page的负数作为requestCode!");
 				} else {
 					page = - requestCode;
 				}

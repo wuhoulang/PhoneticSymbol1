@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 
 import zuo.biao.library.R;
 import zuo.biao.library.interfaces.FragmentPresenter;
-import zuo.biao.library.util.Log;
+import zuo.biao.library.util.ZbLog;
 
 /**基础android.support.v4.app.Fragment，通过继承可获取或使用 里面创建的 组件 和 方法
  * @author Lemon
@@ -165,7 +165,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	 */
 	public final void runUiThread(Runnable action) {
 		if (isAlive() == false) {
-			Log.w(TAG, "runUiThread  isAlive() == false >> return;");
+			ZbLog.w(TAG, "runUiThread  isAlive() == false >> return;");
 			return;
 		}
 		context.runUiThread(action);
@@ -177,7 +177,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	 */
 	public final Handler runThread(String name, Runnable runnable) {
 		if (isAlive() == false) {
-			Log.w(TAG, "runThread  isAlive() == false >> return null;");
+			ZbLog.w(TAG, "runThread  isAlive() == false >> return null;");
 			return null;
 		}
 		return context.runThread(name + hashCode(), runnable);//name, runnable);同一Activity出现多个同名Fragment可能会出错
@@ -190,40 +190,40 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	/**展示加载进度条,无标题
 	 * @param stringResId
 	 */
-	public void showProgressDialog(int stringResId){
+	public void showProgressDiaZbLog(int stringResId){
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
 		context.showProgressDialog(context.getResources().getString(stringResId));
 	}
 	/**展示加载进度条,无标题
-	 * @param dialogMessage
+	 * @param diaZbLogMessage
 	 */
-	public void showProgressDialog(String dialogMessage){
+	public void showProgressDiaZbLog(String diaZbLogMessage){
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
-		context.showProgressDialog(dialogMessage);
+		context.showProgressDialog(diaZbLogMessage);
 	}
 	/**展示加载进度条
-	 * @param dialogTitle 标题
-	 * @param dialogMessage 信息
+	 * @param diaZbLogTitle 标题
+	 * @param diaZbLogMessage 信息
 	 */
-	public void showProgressDialog(String dialogTitle, String dialogMessage){
+	public void showProgressDiaZbLog(String diaZbLogTitle, String diaZbLogMessage){
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
-		context.showProgressDialog(dialogTitle, dialogMessage);
+		context.showProgressDialog(diaZbLogTitle, diaZbLogMessage);
 	}
 
 	/** 隐藏加载进度
 	 */
-	public void dismissProgressDialog(){
+	public void dismissProgressDiaLog(){
 		if (isAlive() == false) {
-			Log.w(TAG, "dismissProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "dismissProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
 		context.dismissProgressDialog();
@@ -262,7 +262,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 			@Override
 			public void run() {
 				if (intent == null) {
-					Log.w(TAG, "toActivity  intent == null >> return;");
+					ZbLog.w(TAG, "toActivity  intent == null >> return;");
 					return;
 				}
 				//fragment中使用context.startActivity会导致在fragment中不能正常接收onActivityResult
@@ -288,7 +288,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	 */
 	public void showShortToast(int stringResId) {
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
 		context.showShortToast(stringResId);
@@ -298,21 +298,21 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	 */
 	public void showShortToast(String string) {
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
 		context.showShortToast(string);
 	}
 	/**快捷显示short toast方法，需要long toast就用 Toast.makeText(string, Toast.LENGTH_LONG).show(); ---不常用所以这个类里不写
 	 * @param string
-	 * @param isForceDismissProgressDialog
+	 * @param isForceDismissProgressDiaZbLog
 	 */
-	public void showShortToast(String string, boolean isForceDismissProgressDialog) {
+	public void showShortToast(String string, boolean isForceDismissProgressDiaZbLog) {
 		if (isAlive() == false) {
-			Log.w(TAG, "showProgressDialog  isAlive() == false >> return;");
+			ZbLog.w(TAG, "showProgressDiaZbLog  isAlive() == false >> return;");
 			return;
 		}
-		context.showShortToast(string, isForceDismissProgressDialog);
+		context.showShortToast(string, isForceDismissProgressDiaZbLog);
 	}
 	//show short toast>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -328,18 +328,18 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
 	@Override
 	public void onResume() {
-		Log.d(TAG, "\n onResume <<<<<<<<<<<<<<<<<<<<<<<");
+		ZbLog.d(TAG, "\n onResume <<<<<<<<<<<<<<<<<<<<<<<");
 		super.onResume();
 		isRunning = true;
-		Log.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>\n");
+		ZbLog.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>\n");
 	}
 
 	@Override
 	public void onPause() {
-		Log.d(TAG, "\n onPause <<<<<<<<<<<<<<<<<<<<<<<");
+		ZbLog.d(TAG, "\n onPause <<<<<<<<<<<<<<<<<<<<<<<");
 		super.onPause();
 		isRunning = false;
-		Log.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>\n");
+		ZbLog.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>\n");
 	}
 
 	/**销毁并回收内存
@@ -347,13 +347,13 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 	 */
 	@Override
 	public void onDestroy() {
-		Log.d(TAG, "\n onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
-		dismissProgressDialog();
+		ZbLog.d(TAG, "\n onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
+		dismissProgressDiaLog();
 		if (view != null) {
 			try {
 				view.destroyDrawingCache();
 			} catch (Exception e) {
-				Log.w(TAG, "onDestroy  try { view.destroyDrawingCache();" +
+				ZbLog.w(TAG, "onDestroy  try { view.destroyDrawingCache();" +
 						" >> } catch (Exception e) {\n" + e.getMessage());
 			}
 		}
@@ -371,6 +371,6 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
 		context = null;
 
-		Log.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>\n");
+		ZbLog.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>\n");
 	}
 }
