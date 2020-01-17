@@ -1,9 +1,16 @@
 package zuo.biao.library.util;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -20,32 +27,38 @@ public class UploadUtil {
 
     private OkHttpClient okHttpClient;
 
-    private UploadUtil(){
-        okHttpClient =new OkHttpClient();
+    private UploadUtil() {
+        okHttpClient = new OkHttpClient();
     }
 
-    private static class UploadUtilgetInstance{
-        private static final UploadUtil uploadUtil=new UploadUtil();
+    private static class UploadUtilgetInstance {
+        private static final UploadUtil uploadUtil = new UploadUtil();
     }
 
-    private UploadUtil getInstance(){
+    public static UploadUtil getInstance() {
         return UploadUtilgetInstance.uploadUtil;
     }
 
-
-    private ResponseBody upload(String url, File file) throws IOException{
-        okHttpClient =new OkHttpClient();
-        RequestBody requestBody =new MultipartBody.Builder()
+    public void upload(String url, File file) throws IOException {
+        okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file",file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"),file)).build();
-        Request request =new Request.Builder().header("Authorization", "ClientID" + UUID.randomUUID())
-                .url("")
+                .addFormDataPart("file", URLEncoder.encode(file.getName()), RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=utf-8"), file)).build();
+        Log.e("ShowDownLoadActivity", "file.getName():" + file.getName());
+        Request request = new Request.Builder().header("Authorization", "ClientID" + UUID.randomUUID())
+                .url(url)
                 .post(requestBody)
                 .build();
-        Response response= okHttpClient.newCall(request).execute();
-        if (!response.isSuccessful())
-            throw new IOException("Unexpected code " + response);
-        return response.body();
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if(response.isSuccessful()){
+                String result = response.body().string();
+                Log.e("ShowDownLoadActivity", "result" + result);
+            }
+            response.body().close();
+        } catch (Exception e) {
+            //TODO
+        }
     }
 
 }
