@@ -2,6 +2,7 @@ package com.example.haoji.phoneticsymbol.type.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.home.bean.DataBean1;
 import com.example.haoji.phoneticsymbol.home.interf.SuccessCallBack;
+import com.example.haoji.phoneticsymbol.myContents.Contents;
+import com.example.haoji.phoneticsymbol.type.adapter.LearnTextRecyclerViewAdapter;
 import com.example.haoji.phoneticsymbol.type.model.UserData;
 import com.example.haoji.phoneticsymbol.type.adapter.LearnMeRecyclerViewAdapter;
 import com.example.haoji.phoneticsymbol.type.model.TypeModel;
@@ -55,18 +58,24 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
     private TypePresenter typePresenter;
     private Context context = ShowDetailActivity.this;
 
-    @OnClick({R.id.iv_hover_black,R.id.id_add_study,R.id.click_to})
+    @OnClick({R.id.iv_hover_black,R.id.id_now_pay,R.id.id_add_study,R.id.click_to})
     public void onViewClicked(View v){
         switch (v.getId()) {
             case R.id.iv_hover_black:
                 finish();
+                break;
+            case R.id.id_now_pay:
+                ZbLog.e("ShowDetailActivity","-------id_now_pay--ONCLICK---");
+                Intent intent = new Intent(context, ShowDownLoadActivity.class);
+                context.startActivity(intent);
+                ((Activity)context).overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 break;
             case R.id.id_add_study:
                 if (UserData.userId.equals("")){
                     return;
                 }
                 String userId = UserData.userId;
-                typePresenter.getPostBean(context, "http://192.168.0.44:9093/collect", "http://dsfdsfdsf", userId, "的方式fsafs收到", "胜多负少的", new SuccessCallBack() {
+                typePresenter.getPostBean(context, Contents.COLLECT, "http://dsfdsfdsf", userId, "的方式fsafs收到", "胜多负少的", new SuccessCallBack() {
                     @Override
                     public void IsSuccess(String data) {
                         ZbLog.e("ShowDetailActivity","--data:"+data.toString());
@@ -125,7 +134,7 @@ public class ShowDetailActivity extends Activity implements MyScrollView.OnFixHe
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.getLayoutParams().height = getScreenHeight(this) - dp2px(this, 50);
-        LearnMeRecyclerViewAdapter lv = new LearnMeRecyclerViewAdapter(this);
+        LearnTextRecyclerViewAdapter lv = new LearnTextRecyclerViewAdapter(this);
         recyclerView.setAdapter(lv);
     }
 

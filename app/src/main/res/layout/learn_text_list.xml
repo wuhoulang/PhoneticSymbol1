@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_learn">
+
+    <TextView
+        android:id="@+id/tv_su_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:text="第1课: 字母D的常见发音方式" />
+
+    <RelativeLayout
+        android:id="@+id/rl_su_rr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_su_title"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/tv_xiang"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_learn"
+            android:background="@drawable/calendar" />
+
+        <TextView
+            android:id="@+id/tv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_xiang"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/iv_calendar"
+            android:text="2019.01.11"
+            android:textSize="8sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/download"/>
+        <TextView
+            android:layout_below="@+id/iv_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14M"
+            android:textSize="8sp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/between_line"
+        android:layout_below="@+id/rl_su_rr">
+    </View>
+
+</RelativeLayout>

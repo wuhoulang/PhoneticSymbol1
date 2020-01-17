@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:textColor="#393939"
         android:text="分类" />
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -26,7 +27,7 @@
         android:id="@+id/rl_one"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="@android:color/white">
 
         <RelativeLayout
@@ -60,12 +61,15 @@
             android:layout_toRightOf="@+id/rl_broadcast"
             android:layout_marginLeft="20dp"
             android:layout_width="1dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/between_line"
             android:layout_centerVertical="true">
         </View>
 
         <GridView
+            android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
             android:id="@+id/gv_broadcast"
             android:layout_toRightOf="@+id/vw_line_one"
@@ -80,7 +84,7 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="@android:color/white">
 
         <RelativeLayout
@@ -114,12 +118,15 @@
             android:layout_toRightOf="@+id/rl_speak"
             android:layout_marginLeft="20dp"
             android:layout_width="1dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/between_line"
             android:layout_centerVertical="true">
         </View>
 
         <GridView
+            android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
             android:id="@+id/gv_speak"
             android:layout_toRightOf="@+id/vw_line_two"
@@ -134,7 +141,7 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="@android:color/white">
 
         <RelativeLayout
@@ -168,12 +175,15 @@
             android:layout_toRightOf="@+id/rl_video"
             android:layout_marginLeft="20dp"
             android:layout_width="1dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/between_line"
             android:layout_centerVertical="true">
         </View>
 
         <GridView
+            android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
             android:id="@+id/gv_video"
             android:layout_toRightOf="@+id/vw_line_three"
@@ -188,7 +198,7 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="@android:color/white">
 
         <RelativeLayout
@@ -222,12 +232,15 @@
             android:layout_toRightOf="@+id/rl_brand"
             android:layout_marginLeft="20dp"
             android:layout_width="1dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/between_line"
             android:layout_centerVertical="true">
         </View>
 
         <GridView
+            android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
             android:id="@+id/gv_brand"
             android:layout_toRightOf="@+id/vw_line_four"

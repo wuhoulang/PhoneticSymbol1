@@ -26,12 +26,14 @@
     </RelativeLayout>
 
     <View
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/between_line">
     </View>
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/sf_learn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

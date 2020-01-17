@@ -57,9 +57,9 @@ public class StudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     public StudyRecyclerViewAdapter(Context context) {
         this.context = context;
         images = new ArrayList<>();
-        images.add("http://192.168.0.44:80/atguigu/img_biao/apple.jpg");
-        images.add("http://192.168.0.44:80/atguigu/img_biao/ba.jpg");
-        images.add("http://192.168.0.44:80/atguigu/img_biao/bat.png");
+        images.add("http://192.168.8.119:80/atguigu/img_biao/apple.jpg");
+        images.add("http://192.168.8.119:80/atguigu/img_biao/ba.jpg");
+        images.add("http://192.168.8.119:80/atguigu/img_biao/bat.png");
     }
 
     @NonNull

@@ -6,9 +6,18 @@ package com.example.haoji.phoneticsymbol.myContents;
 
 public class Contents {
 
-    public static final String URL_BASE = "http://192.168.0.44:80/atguigu";
+
+    public static final String SERVER_BASE = "http://192.168.8.119";
+
+    public static final String BASE = "http://192.168.8.119:80";
+
+    public static final String DUAN = ":9093";
+
+    public static final String URL_BASE = BASE + "/atguigu";
 
     public static final String BASE_URl_IMAGE = URL_BASE+"/img_biao";
+
+    public static final String COLLECT = SERVER_BASE + DUAN + "/collect" ;
 
     public static final String BASE_ONE_IMAGE_DAN_ONE = URL_BASE+"/YinBiao_img/line_one/dan_one/";
 

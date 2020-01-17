@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.haoji.phoneticsymbol.R;
 import com.example.haoji.phoneticsymbol.main.interf.OnItemClickListener;
+import com.example.haoji.phoneticsymbol.main.model.CollectBean;
 import com.example.haoji.phoneticsymbol.main.widget.SettingActivity;
 import com.example.haoji.phoneticsymbol.main.widget.SubscribeActivity;
 
@@ -32,7 +33,7 @@ public class SubRecyclerViewAdapter extends RecyclerView.Adapter<SubRecyclerView
 
     private Context context;
 
-    private ArrayList<String> list;
+    private List<CollectBean> list;
 
     private OnItemClickListener mOnItemClickListener = null;
 
@@ -54,9 +55,9 @@ public class SubRecyclerViewAdapter extends RecyclerView.Adapter<SubRecyclerView
 //        }
 //    });
 
-    public SubRecyclerViewAdapter(Context context, List<String> mList) {
+    public SubRecyclerViewAdapter(Context context, List<CollectBean> mList) {
         this.context = context;
-        this.list = (ArrayList<String>) mList;
+        this.list =  mList;
         Log.e("SubscribeActivity","SubRecyclerViewAdapter---------------list1:"+list.get(1));
     }
 
@@ -97,18 +98,17 @@ public class SubRecyclerViewAdapter extends RecyclerView.Adapter<SubRecyclerView
         if (list.get(1).equals("")){
             return;
         }
-        holder.tv_title_learn.setText(list.get(1));
-        holder.tv_xiang.setText(list.get(2));
+        holder.tv_title_learn.setText(list.get(position).getTitle());
+        holder.tv_xiang.setText(list.get(position).getSubtitle());
 //         Message msg = new Message();
 //         msg.what = 1;
 //         mHander.se
         holder.itemView.setTag(position);
-
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return list.size();
     }
 
     @Override

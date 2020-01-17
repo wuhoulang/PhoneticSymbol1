@@ -9,12 +9,13 @@
         android:id="@+id/tv_type_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#393939"
         android:text="VOA快速"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
     <View
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="12dp"
         android:layout_width="1dp"
         android:layout_height="20dp"
         android:background="@color/between_line">

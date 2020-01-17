@@ -659,7 +659,7 @@ public class DataBean1 {
                  * englishname : map
                  * chinesename : 地图
                  * picture : /1478770583835.png
-                 * music : http://192.168.0.18:80/atguigu/video/music.mp3
+                 * music : http://192.168.8.119:80/atguigu/video/music.mp3
                  */
 
                 private String englishname;

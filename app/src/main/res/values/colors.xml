@@ -6,4 +6,5 @@
     <color name="between_line">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#31c60f</color>
+    <color name="switch_btn_colors">#31c60f</color>
 </resources>

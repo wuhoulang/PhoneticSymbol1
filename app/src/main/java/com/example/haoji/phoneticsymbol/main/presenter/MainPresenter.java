@@ -35,8 +35,6 @@ public class MainPresenter implements ThreeMethod {
 
     }
 
-
-
     @Override
     public void getLogin(Context context, LoginSuccessCallBack successCallBack) {
         this.successCallBack=successCallBack;
@@ -59,7 +57,6 @@ public class MainPresenter implements ThreeMethod {
              }
          });
     }
-
 
     public static void logCallback() {
         successCallBack.loginSuccess();

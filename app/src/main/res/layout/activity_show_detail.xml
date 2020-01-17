@@ -12,6 +12,7 @@
         android:background="@android:color/white">
 
         <ImageView
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/back2_light" />
@@ -26,6 +27,7 @@
 
 
     <View
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/between_line"></View>
@@ -34,7 +36,7 @@
                 android:id="@+id/rl_title_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/show_pratice"
