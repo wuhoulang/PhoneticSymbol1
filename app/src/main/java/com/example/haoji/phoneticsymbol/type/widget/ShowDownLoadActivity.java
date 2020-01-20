@@ -2,11 +2,13 @@ package com.example.haoji.phoneticsymbol.type.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -35,8 +37,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import zuo.biao.library.ui.RoundCheckBox;
+import zuo.biao.library.util.DownloadUtil;
 import zuo.biao.library.util.UploadUtil;
 import zuo.biao.library.util.ZbLog;
+import zuo.biao.library.util.thread.pool.OnDownloadListener;
 
 /**
  * Created by HAOJI on 2020/1/7.
@@ -89,13 +93,48 @@ public class ShowDownLoadActivity extends Activity {
                 finish();
                 break;
             case R.id.btn_all_select:
-                showChooser();
+//                showChooser();
+
+                download_folder();
                 ZbLog.e(TAG,"ENTER btn_all_select");
                 break;
             default:
                 break;
         }
     }
+
+
+   private void download_folder(){
+       final ProgressDialog  progressDialog = new ProgressDialog(this);
+       progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+       progressDialog.setTitle("正在下载");
+       progressDialog.setMessage("请稍后...");
+       progressDialog.setProgress(0);
+       progressDialog.setMax(100);
+       progressDialog.show();
+       progressDialog.setCancelable(false);
+       String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+       ZbLog.e("ShowDownLoadActivity","absolutePath:"+absolutePath);
+       DownloadUtil.get().download(ContentsJson.UP_FOLDER, absolutePath,new OnDownloadListener() {
+           @Override
+           public void onDownloadSuccess(File file) {
+               if (progressDialog != null && progressDialog.isShowing()) {
+                   progressDialog.dismiss();
+               }
+               ZbLog.e("ShowDownLoadActivity","success");
+           }
+
+           @Override
+           public void onDownloadFailed(Exception e) {
+
+           }
+
+           @Override
+           public void onDownloadLoading(int progress) {
+               progressDialog.setProgress(progress);
+           }
+       });
+   }
 
     private void showChooser() {
         // Use the GET_CONTENT intent from the utility class
@@ -127,18 +166,7 @@ public class ShowDownLoadActivity extends Activity {
                             final String path = FileUtils.getPath(this, uri);
                             Toast.makeText(ShowDownLoadActivity.this,
                                     "File Selected: " + path, Toast.LENGTH_LONG).show();
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                     File file =new File(path);
-                                    try {
-                                        Log.e("ShowDownLoadActivity", "path:" + path);
-                                        UploadUtil.getInstance().upload(ContentsJson.UP_FOLDER, file);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
+
                         } catch (Exception e) {
                             Log.e("ShowDownLoadActivity", "File select error", e);
                         }

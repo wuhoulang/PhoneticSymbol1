@@ -32,7 +32,9 @@ public class ContentsJson {
 
     public static final String BASE_ONE_JSON_VIDEO_REAL = URL_BASE+"/flash_man/0000_video.mp4";
 
-    public static final String UP_FOLDER = "http://192.168.8.119/upload";
+    public static final String UP_FOLDER = "http://192.168.8.119:80/template/Fish.jpg";
+
+    public static final String UP_EXPLOR = "http://192.168.8.119:80/template/";
 //    public static final String UP_FOLDER = "http://192.168.8.119"+"//";
 
 

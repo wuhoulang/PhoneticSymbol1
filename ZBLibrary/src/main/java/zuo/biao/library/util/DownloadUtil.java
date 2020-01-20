@@ -34,7 +34,7 @@ public class DownloadUtil {
     }
 
 
-    public void download(String url, String destFileDir, String destFileName, OnDownloadListener listener) {
+    public void download(String url, String destFileDir, OnDownloadListener listener) {
         Request request = new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -44,6 +44,9 @@ public class DownloadUtil {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                String realUrl = response.request().url().toString();
+                String tempStr = realUrl.substring(realUrl.lastIndexOf("/") + 1);
+                Log.e("progress", "progress:" + tempStr);
                 InputStream is = null;
                 byte[] buf = new byte[2048];
                 int len = 0;
@@ -53,7 +56,7 @@ public class DownloadUtil {
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
-                File file = new File(dir, destFileName);
+                File file = new File(dir, tempStr);
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
@@ -63,7 +66,7 @@ public class DownloadUtil {
                         fos.write(buf, 0, len);
                         sum += len;
                         int progress = (int) (sum * 1.0f / total * 100);
-                        Log.e("progress", "sum:" + sum);
+                        Log.e("progress", "sum:" + sum * 1.0f);
                         Log.e("progress", "progress:" + progress);
                         Log.e("progress", "total:" + total);
                         Log.e("progress", "--------------------------------------");
